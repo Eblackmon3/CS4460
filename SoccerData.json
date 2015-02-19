@@ -1311,7 +1311,13 @@
 				"revenue": "292.2", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions	
+				"facebook": "", // likes in millions	
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Manchester United",
@@ -1319,7 +1325,13 @@
 				"revenue": "242.6", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Bayern Munich",
@@ -1327,7 +1339,13 @@
 				"revenue": "204.7", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "FC Barcelona",
@@ -1335,7 +1353,13 @@
 				"revenue": "259.1", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Manchester City",
@@ -1343,7 +1367,13 @@
 				"revenue": "89.4", // millions of euroes
 				"position": "15", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Chelsea",
@@ -1351,7 +1381,13 @@
 				"revenue": "221", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Arsenal",
@@ -1359,7 +1395,13 @@
 				"revenue": "192.4", // millions of euroes
 				"position": "4", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Liverpool",
@@ -1367,7 +1409,13 @@
 				"revenue": "176", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Juventus",
@@ -1375,7 +1423,13 @@
 				"revenue": "251.2", // millions of euroes
 				"position": "20", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "AC Milan",
@@ -1383,7 +1437,13 @@
 				"revenue": "238.7", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Tottenham Hotspur",
@@ -1391,7 +1451,13 @@
 				"revenue": "107.2", // millions of euroes
 				"position": "5", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Schalke 04",
@@ -1399,7 +1465,13 @@
 				"revenue": "122.9", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Internazionale",
@@ -1407,7 +1479,13 @@
 				"revenue": "206.6", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Newcastle United",
@@ -1415,7 +1493,13 @@
 				"revenue": "124.3", // millions of euroes
 				"position": "7", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Hamburger SV",
@@ -1423,7 +1507,13 @@
 				"revenue": "101.8", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "AS Roma",
@@ -1431,7 +1521,13 @@
 				"revenue": "127", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Olympique Lyonnais",
@@ -1439,7 +1535,13 @@
 				"revenue": "127.7", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Rangers",
@@ -1447,7 +1549,13 @@
 				"revenue": "88.5", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "West Ham United",
@@ -1455,7 +1563,13 @@
 				"revenue": "86.9", // millions of euroes
 				"position": "9", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Benefica",
@@ -1463,7 +1577,13 @@
 				"revenue": "85.1", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			}
 		],
 		"2005": [
@@ -1473,7 +1593,13 @@
 				"revenue": "275.7", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions	
+				"facebook": "", // likes in millions	
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Manchester United",
@@ -1481,7 +1607,13 @@
 				"revenue": "246.4", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Bayern Munich",
@@ -1489,7 +1621,13 @@
 				"revenue": "189.5", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "FC Barcelona",
@@ -1497,7 +1635,13 @@
 				"revenue": "207.9", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Manchester City",
@@ -1505,7 +1649,13 @@
 				"revenue": "90.1", // millions of euroes
 				"position": "8", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Chelsea",
@@ -1513,7 +1663,13 @@
 				"revenue": "220.8", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Arsenal",
@@ -1521,7 +1677,13 @@
 				"revenue": "171.3", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Liverpool",
@@ -1529,7 +1691,13 @@
 				"revenue": "181.2", // millions of euroes
 				"position": "5", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Juventus",
@@ -1537,7 +1705,13 @@
 				"revenue": "229.4", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "AC Milan",
@@ -1545,7 +1719,13 @@
 				"revenue": "234", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Tottenham Hotspur",
@@ -1553,7 +1733,13 @@
 				"revenue": "104.5", // millions of euroes
 				"position": "9", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Schalke 04",
@@ -1561,7 +1747,13 @@
 				"revenue": "97.4", // millions of euroes
 				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Internazionale",
@@ -1569,7 +1761,13 @@
 				"revenue": "177.2", // millions of euroes
 				"position": "3", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Newcastle United",
@@ -1577,7 +1775,13 @@
 				"revenue": "128.9", // millions of euroes
 				"position": "14", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Everton",
@@ -1585,7 +1789,13 @@
 				"revenue": "88.8", // millions of euroes
 				"position": "4", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "AS Roma",
@@ -1593,7 +1803,13 @@
 				"revenue": "131.8", // millions of euroes
 				"position": "8", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Olympique Lyonnais",
@@ -1601,7 +1817,13 @@
 				"revenue": "92.9", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Valencia",
@@ -1609,7 +1831,13 @@
 				"revenue": "84.6", // millions of euroes
 				"position": "7", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Celtic",
@@ -1617,7 +1845,13 @@
 				"revenue": "92.7", // millions of euroes
 				"position": "1", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			},
 			{
 				"name": "Lazio",
@@ -1625,7 +1859,13 @@
 				"revenue": "83.1", // millions of euroes
 				"position": "10", // Domestic League Position
 				"twitter": "", // followers in millions
-				"facebook": "" // likes in millions
+				"facebook": "", // likes in millions
+				"stats": {
+					"ga": "",
+					"gf": "",
+					"gd": "",
+					"points": ""
+				}
 			}
 		]
 	}
