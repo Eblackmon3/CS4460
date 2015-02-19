@@ -1667,10 +1667,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions	
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "40",
+					"gf": "70",
+					"gd": "+30",
+					"points": "70"
 				}
 			},
 			{
@@ -1681,10 +1681,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "34",
+					"gf": "72",
+					"gd": "+38",
+					"points": "83"
 				}
 			},
 			{
@@ -1695,10 +1695,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "32",
+					"gf": "67",
+					"gd": "+35",
+					"points": "75"
 				}
 			},
 			{
@@ -1709,10 +1709,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "35",
+					"gf": "80",
+					"gd": "+45",
+					"points": "82"
 				}
 			},
 			{
@@ -1723,10 +1723,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "48",
+					"gf": "43",
+					"gd": "-5",
+					"points": "43"
 				}
 			},
 			{
@@ -1737,10 +1737,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "22",
+					"gf": "72",
+					"gd": "+50",
+					"points": "91"
 				}
 			},
 			{
@@ -1751,10 +1751,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "31",
+					"gf": "68",
+					"gd": "+37",
+					"points": "67"
 				}
 			},
 			{
@@ -1765,10 +1765,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "25",
+					"gf": "57",
+					"gd": "+32",
+					"points": "82"
 				}
 			},
 			{
@@ -1779,10 +1779,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "24",
+					"gf": "71",
+					"gd": "+47",
+					"points": "91"
 				}
 			},
 			{
@@ -1793,10 +1793,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "31",
+					"gf": "85",
+					"gd": "+54",
+					"points": "58"
 				}
 			},
 			{
@@ -1807,24 +1807,24 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "38",
+					"gf": "53",
+					"gd": "+15",
+					"points": "65"
 				}
 			},
 			{
 				"name": "Schalke 04",
 				"country": "Germany",
 				"revenue": "122.9", // millions of euroes
-				"position": "3", // Domestic League Position
+				"position": "4", // Domestic League Position
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "31",
+					"gf": "47",
+					"gd": "+16",
+					"points": "61"
 				}
 			},
 			{
@@ -1835,10 +1835,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "30",
+					"gf": "68",
+					"gd": "+38",
+					"points": "76"
 				}
 			},
 			{
@@ -1849,10 +1849,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "42",
+					"gf": "47",
+					"gd": "+5",
+					"points": "58"
 				}
 			},
 			{
@@ -1863,10 +1863,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "30",
+					"gf": "53",
+					"gd": "+23",
+					"points": "68"
 				}
 			},
 			{
@@ -1877,10 +1877,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "42",
+					"gf": "70",
+					"gd": "+28",
+					"points": "69"
 				}
 			},
 			{
@@ -1891,10 +1891,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "31",
+					"gf": "73",
+					"gd": "+42",
+					"points": "84"
 				}
 			},
 			{
@@ -1905,10 +1905,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "37",
+					"gf": "67",
+					"gd": "+30",
+					"points": "73"
 				}
 			},
 			{
@@ -1919,10 +1919,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "55",
+					"gf": "52",
+					"gd": "-3",
+					"points": "55"
 				}
 			},
 			{
@@ -1933,10 +1933,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "31",
+					"gf": "51",
+					"gd": "+20",
+					"points": "65"
 				}
 			}
 		],
@@ -1949,10 +1949,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions	
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "32",
+					"gf": "71",
+					"gd": "+39",
+					"points": "80"
 				}
 			},
 			{
@@ -1977,10 +1977,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "33",
+					"gf": "75",
+					"gd": "+42",
+					"points": "77"
 				}
 			},
 			{
@@ -1991,10 +1991,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "29",
+					"gf": "73",
+					"gd": "+44",
+					"points": "84"
 				}
 			},
 			{
@@ -2061,10 +2061,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "27",
+					"gf": "67",
+					"gd": "+40",
+					"points": "86"
 				}
 			},
 			{
@@ -2075,10 +2075,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "28",
+					"gf": "63",
+					"gd": "+35",
+					"points": "79"
 				}
 			},
 			{
@@ -2103,10 +2103,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "46",
+					"gf": "56",
+					"gd": "+10",
+					"points": "63"
 				}
 			},
 			{
@@ -2117,10 +2117,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "37",
+					"gf": "65",
+					"gd": "+28",
+					"points": "72"
 				}
 			},
 			{
@@ -2159,10 +2159,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "58",
+					"gf": "55",
+					"gd": "-3",
+					"points": "45"
 				}
 			},
 			{
@@ -2173,10 +2173,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "22",
+					"gf": "56",
+					"gd": "+34",
+					"points": "79"
 				}
 			},
 			{
@@ -2187,24 +2187,24 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "39",
+					"gf": "54",
+					"gd": "+15",
+					"points": "58"
 				}
 			},
 			{
 				"name": "Celtic",
 				"country": "Scotland",
 				"revenue": "92.7", // millions of euroes
-				"position": "1", // Domestic League Position
+				"position": "2", // Domestic League Position
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "35",
+					"gf": "85",
+					"gd": "+50",
+					"points": "92"
 				}
 			},
 			{
@@ -2215,10 +2215,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "53",
+					"gf": "48",
+					"gd": "-5",
+					"points": "44"
 				}
 			}
 		]
