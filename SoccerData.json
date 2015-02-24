@@ -1849,10 +1849,10 @@
 				"twitter": "", // followers in millions
 				"facebook": "", // likes in millions
 				"stats": {
-					"ga": "",
-					"gf": "",
-					"gd": "",
-					"points": ""
+					"ga": "30",
+					"gf": "83",
+					"gd": "+53",
+					"points": "85"
 				}
 			},
 			{
