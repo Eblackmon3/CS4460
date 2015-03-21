@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="utf-8">
+<title>Soccer Viz</title>
+<script type="text/javascript" src="d3/d3.js"></script>
+<style>
+body {
+font: 11px sans-serif;
+}
+
+.axis path,
+.axis line {
+fill: none;
+stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.dot {
+stroke: #fff;
+}
+
+
+.tooltip {
+position: absolute;
+width: 200px;
+height: 28px;
+pointer-events: none;
+}
+
+</style>
+<!--Set up area for both of the graphs -->
+
+
+<body>
+<!-- Selection for the Statistics Graph-->
+<div style="display: table-cell; width: 120;">
+<label for="xdropdownStat">X: </label><select id="xdropdownStat">
+<option val="region">Goals Against</option>
+<option val="category">Goals For</option>
+<option val="region">Goal Differential</option>
+<option val="category">Points</option>
+
+</select>
+</div>
+<div style="display: table-cell; width: 150;">
+<label for="ydropdownStat">Y: </label><select id="ydropdownStat">
+<option val="sales">Revenue</option>
+<option val="profit">Position</option>
+
+</select>
+</div>
+<div style="display: table-cell; width: 150;">
+<button id="updateStat" onclick="updateClickedStat()">Update</button>
+</div>
+</div>
+
+
+
+<!--Selection for the Social media Graph -->
+<div style="display: table-cell; width: 120;">
+<label for="xdropdownSocial">X: </label><select id="xdropdownSocial">
+<option val="region">Twitter Followers</option>
+<option val="category">Facebook Followers</option>
+
+</select>
+</div>
+<div style="display: table-cell; width: 150;">
+<label for="ydropdownSocial">Y: </label><select id="ydropdownSocial">
+<option val="sales">Revenue</option>
+<option val="profit">Position</option>
+
+</select>
+</div>
+<div style="display: table-cell; width: 150;">
+<button id="updateSocial" onclick="updateClickedSocial()">Update</button>
+</div>
+</div>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- Setup Chart areas-->
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+        <div id= "statArea" style="width: 200px; display: table-cell;"> Left </div>
+        <div id= "SocialArea" style="display: table-cell;"> Right </div>
+    </div>
+</div>
+
+<script>
+
+//set the margins for the canvas 
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+width = 970 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
+
+//Create the label and scale holders for the Stat and Social graph 
+var	XLabelStat;
+var YLabelStat;
+var XScaleStat;
+var YScaleStat;
+var	XLabelSocial;
+var YLabelSocial;
+var XScaleSocial;
+var YScaleSocial;
+
+
+//Set the variables to determine if the stats and social media graph have been drawn
+var alreadyDrawnStats = false;
+var alreadyDrawSocial= false;
+
+//connect the svg elements to both the stat chart and the social revenue chart 
+var statChart = d3.select("#statArea").append("svg")
+.attr("width", (width + margin.left + margin.right)/1.225)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var statChart = d3.select("#socialArea").append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//add the tool tip which we will use for the hoover effect for both charts 
+var tooltip = d3.select("body").append("div")
+.attr("class", "tooltip")
+.style("opacity", 0);
+
+// Returns the selected option in the X-axis dropdown for the stat chart. 
+function getXSelectedOptionStat(){
+	var node = d3.select('#xdropdownStat').node();
+	var i = node.selectedIndex;
+	return node[i].value;
+}
+
+// Returns the selected option in the Y-axis dropdown for the stat chart . 
+function getYSelectedOptionStat(){
+	var node = d3.select('#ydropdownStat').node();
+	var i = node.selectedIndex;
+	return node[i].value;
+}	
+
+// Returns the selected option in the X-axis dropdown for the social chart. 
+function getXSelectedOptionSocial(){
+	var node = d3.select('#xdropdownSocial').node();
+	var i = node.selectedIndex;
+	return node[i].value;
+}
+
+// Returns the selected option in the Y-axis dropdown for the social chart . 
+function getYSelectedOptionSocial(){
+	var node = d3.select('#ydropdownSocial').node();
+	var i = node.selectedIndex;
+	return node[i].value;
+}	
+
+/* create the x- axis and y-axis for the stat chart and 
+ * upload the information ONCE WE HAVE TIME ASSOCIATED WE WILL NEED TO ADJUST DATA INPUT
+ */
+function updateClickedStat(){
+
+	if(getXSelectedOptionStat()=='Goals Against' && getYSelectedOptionStat()=='Revenue'){
+		XLabelStat ="Goals Against";
+		YLabelStat= "Revenue";
+	}else if(getXSelectedOptionStat()=='Goals For' && getYSelectedOptionStat()=='Revenue'){
+		XLabelStat ="Goals For";
+		YLabelStat= "Revenue";
+	}else if(getXSelectedOptionStat()=='Goal Differential' && getYSelectedOptionStat()=='Revenue'){
+		XLabelStat ="Goal Differential";
+		YLabelStat= "Revenue";
+	}else if(getXSelectedOptionStat()=='Points' && getYSelectedOptionStat()=='Revenue'){
+		XLabelStat ="Points";
+		YLabelStat= "Revenue";
+	}else if(getXSelectedOptionStat()=='Goals For' && getYSelectedOptionStat()=='Position'){
+		XLabelStat ="Goals For";
+		YLabelStat= "Position";
+	}else if(getXSelectedOptionStat()=='Goal Differential' && getYSelectedOptionStat()=='Position'){
+		XLabelStat="Goal Differential";
+		YLabelStat= "Position";
+	}else if(getXSelectedOptionStat()=='Goals Against' && getYSelectedOptionStat()=='Position'){
+		XLabelStat ="Goals Against";
+		YLabelStat= "Position";
+	}else if(getXSelectedOptionStat()=='Points' && getYSelectedOptionStat()=='Position'){
+		XLabelStat ="Points";
+		YLabelStat= "Position";
+	}
+	
+/*d3.json("SoccerData.json", function(error, data) {
+	// convert numerical data
+		getSoccerData(data);
+		
+
+	});
+	*/
+}
+
+/* create the x- axis and y-axis for the social chart and 
+ * upload the information ONCE WE HAVE TIME ASSOCIATED WE WILL NEED TO ADJUST DATA INPUT
+ */
+function updateClickedSocial(){
+
+	if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Revenue'){
+		XLabelSocial ="Twitter Followers";
+		YLabelSocial= "Revenue";
+		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+	}else if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Position'){
+		XLabelSocial ="Twitter Followers";
+		YLabelSocial= "Position";
+		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+	}else if(getXSelectedOptionSocial()=='Facebook Followers' && getYSelectedOptionSocial()=='Revenue'){
+		XLabelSocial ="Facebook Followers";
+		YLabelSocial= "Revenue";
+		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+	}else{
+		XLabelSocial ="Facebook Followers";
+		YLabelSocial= "Position";
+		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+	}
+	
+	/*d3.json("SoccerData.json", function(error, data) {
+	// convert numerical data
+		getSoccerData(data);
+		
+
+	});
+	*/
+}
+
+</script>
+</body>
+</html>
