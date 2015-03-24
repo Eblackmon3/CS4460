@@ -108,6 +108,23 @@ var XScaleSocial;
 var YScaleSocial;
 
 
+//Convert the umerical dat within our json 
+function getSoccerData(data){
+	for(i=0;i<data.length;i++){
+		data[i].ReleaseYear=+ data[i].ReleaseYear;
+		data[i].IMDBRating=+ data[i].IMDBRating;
+		data[i].RunTime=+ data[i].RunTime;
+		console.log(data[i].Profit);
+		year.push(data[i].ReleaseYear);
+		IMDB.push(data[i].IMDBRating);
+		time.push(data[i].RunTime);
+	
+		
+		
+		
+	}
+	}
+
 //Set the variables to determine if the stats and social media graph have been drawn
 var alreadyDrawnStats = false;
 var alreadyDrawSocial= false;
@@ -206,24 +223,24 @@ function updateClickedSocial(){
 	if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Revenue'){
 		XLabelSocial ="Twitter Followers";
 		YLabelSocial= "Revenue";
-		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+		
 	}else if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Position'){
 		XLabelSocial ="Twitter Followers";
 		YLabelSocial= "Position";
-		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+		
 	}else if(getXSelectedOptionSocial()=='Facebook Followers' && getYSelectedOptionSocial()=='Revenue'){
 		XLabelSocial ="Facebook Followers";
 		YLabelSocial= "Revenue";
-		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+		
 	}else{
 		XLabelSocial ="Facebook Followers";
 		YLabelSocial= "Position";
-		console.log("X label Social:"+XLabelSocial+" Y label Social " +YLabelSocial);
+		
 	}
 	
 	/*d3.json("SoccerData.json", function(error, data) {
-	// convert numerical data
-		getSoccerData(data);
+	
+		console.log(data["2005"]);
 		
 
 	});
