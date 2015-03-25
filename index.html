@@ -79,14 +79,32 @@ pointer-events: none;
 </div>
 </div>
 
+<!-- Year Selector-->
+
+<div style="display: table-cell; width: 120;">
+<label for="yearDropDown">Year: </label><select id="yearDropDown">
+<option val="region">2014</option>
+<option val="category">2013</option>
+<option val="region">2012</option>
+<option val="category">2010</option>
+<option val="region">2009</option>
+<option val="category">2008</option>
+<option val="region">2007</option>
+<option val="category">2006</option>
+<option val="category">2005</option>
+
+</select>
+<div style="display: table-cell; width: 120;">
+<button id="updateYear" onclick="updateYear()">Update</button>
+</div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <!-- Setup Chart areas-->
 <div style="width: 100%; display: table;">
     <div style="display: table-row">
-        <div id= "statArea" style="width: 200px; display: table-cell;"> Left </div>
-        <div id= "SocialArea" style="display: table-cell;"> Right </div>
+        <div id= "statArea" style="width: 200px; display: table-cell;">  </div>
+        <div id= "SocialArea" style="display: table-cell;"> </div>
     </div>
 </div>
 
@@ -98,6 +116,7 @@ width = 970 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
 //Create the label and scale holders for the Stat and Social graph 
+var year= "2014";
 var	XLabelStat;
 var YLabelStat;
 var XScaleStat;
@@ -106,28 +125,42 @@ var	XLabelSocial;
 var YLabelSocial;
 var XScaleSocial;
 var YScaleSocial;
+var twitterArr=[];
+var facebookArr=[];
+var revenueArr=[];
+var positionArr=[];
+var teamNames=[]
+var countries=[];
+
 
 
 //Convert the umerical dat within our json 
-function getSoccerData(data){
-	for(i=0;i<data.length;i++){
-		data[i].ReleaseYear=+ data[i].ReleaseYear;
-		data[i].IMDBRating=+ data[i].IMDBRating;
-		data[i].RunTime=+ data[i].RunTime;
-		console.log(data[i].Profit);
-		year.push(data[i].ReleaseYear);
-		IMDB.push(data[i].IMDBRating);
-		time.push(data[i].RunTime);
-	
+function getSoccerData(year,data){
+
+	for(i=0;i<data[year].length;i++){
+		data[year][i].facebook=+ data[year][i].facebook;
+		data[year][i].twitter=+ data[year][i].twitter;
+		data[year][i].revenue=+data[year][i].revenue;
+		data[year][i].position=+data[year][i].position;
+		teamNames.push(data[year][i].name);
+		countries.push(data[year][i].country);
+		positionArr.push(data[year][i].position);
+		twitterArr.push(data[year][i].twitter);
+		revenueArr.push(data[year][i].revenue);
+		facebookArr.push(data[year][i].facebook);
+		}
 		
-		
-		
-	}
 	}
 
 //Set the variables to determine if the stats and social media graph have been drawn
 var alreadyDrawnStats = false;
 var alreadyDrawSocial= false;
+
+// setup fill color
+var cValueSocial = function(d) { return d.name;},
+color = d3.scale.category20();
+var cValueStat = function(d) { return d.name;},
+color = d3.scale.category20();
 
 //connect the svg elements to both the stat chart and the social revenue chart 
 var statChart = d3.select("#statArea").append("svg")
@@ -136,7 +169,7 @@ var statChart = d3.select("#statArea").append("svg")
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var statChart = d3.select("#socialArea").append("svg")
+var socialChart = d3.select("#socialArea").append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
@@ -175,6 +208,17 @@ function getYSelectedOptionSocial(){
 	return node[i].value;
 }	
 
+// Returns the selected option in the dropdown for the year. 
+function getYear(){
+	var node = d3.select('#yearDropDown').node();
+	var i = node.selectedIndex;
+	return node[i].value;
+}	
+function updateYear(){
+year= getYear();
+console.log(year);
+}
+
 /* create the x- axis and y-axis for the stat chart and 
  * upload the information ONCE WE HAVE TIME ASSOCIATED WE WILL NEED TO ADJUST DATA INPUT
  */
@@ -206,13 +250,12 @@ function updateClickedStat(){
 		YLabelStat= "Position";
 	}
 	
-/*d3.json("SoccerData.json", function(error, data) {
-	// convert numerical data
-		getSoccerData(data);
+d3.json("SoccerData.json", function(error, data) {
+	//console.log(data["2014"]);
 		
 
 	});
-	*/
+	
 }
 
 /* create the x- axis and y-axis for the social chart and 
@@ -220,31 +263,36 @@ function updateClickedStat(){
  */
 function updateClickedSocial(){
 
+		
 	if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Revenue'){
-		XLabelSocial ="Twitter Followers";
-		YLabelSocial= "Revenue";
+		XLabelSocial ="twitter";
+		YLabelSocial= "revenue";
+		
 		
 	}else if(getXSelectedOptionSocial()=='Twitter Followers' && getYSelectedOptionSocial()=='Position'){
-		XLabelSocial ="Twitter Followers";
-		YLabelSocial= "Position";
+		XLabelSocial ="twitter";
+		YLabelSocial= "position";
+		
 		
 	}else if(getXSelectedOptionSocial()=='Facebook Followers' && getYSelectedOptionSocial()=='Revenue'){
-		XLabelSocial ="Facebook Followers";
-		YLabelSocial= "Revenue";
+		XLabelSocial ="facebook";
+		YLabelSocial= "revenue";
+	
 		
 	}else{
-		XLabelSocial ="Facebook Followers";
-		YLabelSocial= "Position";
+		XLabelSocial ="facebook";
+		YLabelSocial= "position";
+		
 		
 	}
 	
-	/*d3.json("SoccerData.json", function(error, data) {
+		d3.json("SoccerData.json", function(error, data) {
 	
-		console.log(data["2005"]);
-		
+		getSoccerData(year,data);
+		console.log(data[year]);
+		//drawSocial(XLabelSocial, YLabelSocial);
 
 	});
-	*/
 }
 
 </script>
