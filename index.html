@@ -125,12 +125,17 @@ var	XLabelSocial;
 var YLabelSocial;
 var XScaleSocial;
 var YScaleSocial;
+//can use these to access the data 
 var twitterArr=[];
 var facebookArr=[];
 var revenueArr=[];
 var positionArr=[];
 var teamNames=[]
 var countries=[];
+var gfArr=[];
+var gaArr=[];
+var gdArr=[];
+var pointsArr=[];
 
 
 
@@ -148,6 +153,10 @@ function getSoccerData(year,data){
 		twitterArr.push(data[year][i].twitter);
 		revenueArr.push(data[year][i].revenue);
 		facebookArr.push(data[year][i].facebook);
+		gfArr.push(data[year][i]["stats"].gf);
+		gaArr.push(data[year][i]["stats"].ga);
+		gdArr.push(data[year][i]["stats"].gd);
+		pointsArr.push(data[year][i]["stats"].points);
 		}
 		
 	}
@@ -289,7 +298,8 @@ function updateClickedSocial(){
 		d3.json("SoccerData.json", function(error, data) {
 	
 		getSoccerData(year,data);
-		console.log(data[year]);
+		console.log(gaArr);
+		console.log(pointsArr);
 		//drawSocial(XLabelSocial, YLabelSocial);
 
 	});
