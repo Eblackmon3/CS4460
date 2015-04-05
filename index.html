@@ -164,19 +164,48 @@ function getSoccerData(year,data){
 		
 	}
 
+// Markers for Timeline graph.
+var markers = [
+		{'year':2006, 'label': 'World Cup'},
+		{'year':2010, 'label': 'World Cup'},
+		{'year':2014, 'label': 'World Cup'},
+];
+
 d3.json("TeamPositions.json", function(data){
 	d3.select("body").append("div")
 	.attr("id", "timeline")
 	.attr("style", "width:500px;");
 
-	var markers = [
-		{'year':2006, 'label': 'World Cup'},
-		{'year':2010, 'label': 'World Cup'},
-		{'year':2014, 'label': 'World Cup'},
-	];
+	// Timeline Example Button 1 
+	d3.select('body').append('div').attr('style','float:left;').append('input')
+	.attr('type', 'button')
+	.attr('name', 'chelseaButton')
+	.attr('value', 'Chelsea')
+	.on('click', function() {
+		updateTimeline(data['Chelsea'])
+	});
+
+	// Timeline Example Button 2
+	d3.select('body').append('div').attr('style','float:left;').append('input')
+	.attr('type', 'button')
+	.attr('name', 'madridButton')
+	.attr('value', 'Real Madrid')
+	.on('click', function() {
+		updateTimeline(data['Real Madrid'])
+	});
+
+	// Timeline Example Button 3
+	d3.select('body').append('div').attr('style','float:left;').append('input')
+	.attr('type', 'button')
+	.attr('name', 'romaButton')
+	.attr('value', 'AS Roma')
+	.on('click', function() {
+		updateTimeline(data['AS Roma'])
+	});
+	
 
 	MG.data_graphic({
-	    title: 'Soccer Team Positions',
+	    title: 'League Positions Over Time',
 	    description: 'This is where a teams position over time will appear.',
 	    data: data["Chelsea"], 
 	    markers: markers,
@@ -187,6 +216,25 @@ d3.json("TeamPositions.json", function(data){
 	    y_accessor: 'position' // the key that accesses the y value
 	});
 });
+
+/**
+ * Called to update the timeline when a new team is picked.
+ * @param {Array} data An array containing a team's positions and years.
+ */
+function updateTimeline(data) {
+	console.log(data);
+	MG.data_graphic({
+	    title: 'League Positions Over Time',
+	    description: 'This is where a teams position over time will appear.',
+	    data: data, 
+	    markers: markers,
+	    width: 400,
+	    height: 250,
+	    target: '#timeline', // the html element that the graphic is inserted in
+	    x_accessor: 'year',  // the key that accesses the x value
+	    y_accessor: 'position' // the key that accesses the y value
+	});
+}
 
 
 //Set the variables to determine if the stats and social media graph have been drawn
