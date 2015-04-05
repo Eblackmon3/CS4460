@@ -211,6 +211,7 @@ d3.json("TeamPositions.json", function(data){
 	    markers: markers,
 	    width: 400,
 	    height: 250,
+	    interpolate: 'basic',
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
 	    y_accessor: 'position' // the key that accesses the y value
@@ -230,6 +231,7 @@ function updateTimeline(data) {
 	    markers: markers,
 	    width: 400,
 	    height: 250,
+	    interpolate: 'basic',
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
 	    y_accessor: 'position' // the key that accesses the y value
