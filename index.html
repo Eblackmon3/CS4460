@@ -5,7 +5,10 @@
 <head>
 <meta charset="utf-8">
 <title>Soccer Viz</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="d3/d3.js"></script>
+<script type="text/javascript" src="dist/metricsgraphics.js"></script>
+<link rel="stylesheet" type="text/css" href="dist/metricsgraphics.css">
 <style>
 body {
 font: 11px sans-serif;
@@ -160,6 +163,24 @@ function getSoccerData(year,data){
 		}
 		
 	}
+
+d3.json("TeamPositions.json", function(data){
+	d3.select("body").append("div")
+	.attr("id", "timeline")
+	.attr("style", "width:500px;");
+	MG.data_graphic({
+	    title: 'Soccer Team Positions',
+	    description: 'This is where a teams position over time will appear.',
+	    data: data["Chelsea"], 
+
+	    width: 400,
+	    height: 250,
+	    target: '#timeline', // the html element that the graphic is inserted in
+	    x_accessor: 'year',  // the key that accesses the x value
+	    y_accessor: 'position' // the key that accesses the y value
+	});
+});
+
 
 //Set the variables to determine if the stats and social media graph have been drawn
 var alreadyDrawnStats = false;
