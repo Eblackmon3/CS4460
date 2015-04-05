@@ -49,8 +49,7 @@
 	],
 	"Paris Saint-Germain": [
 		{"year": "2014", "position": 1},
-		{"year": "2013", "position": 1},
-		
+		{"year": "2013", "position": 1}
 	],
 	"Manchester City": [
 		{"year": "2014", "position": 1},
@@ -118,7 +117,7 @@
 		{"year": "2012", "position": 1},
 		{"year": "2011", "position": 1},
 		{"year": "2010", "position": 1},
-		{"year": "2009", "position": 6},
+		{"year": "2009", "position": 6}
 	],
 	"AC Milan": [
 		{"year": "2014", "position": 8},
