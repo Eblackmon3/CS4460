@@ -168,11 +168,18 @@ d3.json("TeamPositions.json", function(data){
 	d3.select("body").append("div")
 	.attr("id", "timeline")
 	.attr("style", "width:500px;");
+
+	var markers = [
+		{'year':2006, 'label': 'World Cup'},
+		{'year':2010, 'label': 'World Cup'},
+		{'year':2014, 'label': 'World Cup'},
+	];
+
 	MG.data_graphic({
 	    title: 'Soccer Team Positions',
 	    description: 'This is where a teams position over time will appear.',
 	    data: data["Chelsea"], 
-
+	    markers: markers,
 	    width: 400,
 	    height: 250,
 	    target: '#timeline', // the html element that the graphic is inserted in
