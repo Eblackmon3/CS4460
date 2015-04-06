@@ -168,42 +168,57 @@ function getSoccerData(year,data){
 var markers = [
 		{'year':2006, 'label': 'World Cup'},
 		{'year':2010, 'label': 'World Cup'},
-		{'year':2014, 'label': 'World Cup'},
+		{'year':2014, 'label': 'World Cup'}
 ];
 
+// Store timeline JSON locally after call to D3.json
+var timelineData = {};
+
 d3.json("TeamPositions.json", function(data){
-	d3.select("body").append("div")
-	.attr("id", "timeline")
-	.attr("style", "width:500px;");
+	timelineData = data;
 
-	// Timeline Example Button 1 
-	d3.select('body').append('div').attr('style','float:left;').append('input')
-	.attr('type', 'button')
-	.attr('name', 'chelseaButton')
-	.attr('value', 'Chelsea')
-	.on('click', function() {
-		updateTimeline(data['Chelsea'])
-	});
+	// Timeline Container to hold timeline and legend.
+	d3.select("body").append("div").attr('id','timelineContainter')
+		// Timeline graph
+		.append('div').attr("id", "timeline")
+		.attr("style", "width:500px;float:left;");
 
-	// Timeline Example Button 2
-	d3.select('body').append('div').attr('style','float:left;').append('input')
-	.attr('type', 'button')
-	.attr('name', 'madridButton')
-	.attr('value', 'Real Madrid')
-	.on('click', function() {
-		updateTimeline(data['Real Madrid'])
-	});
-
-	// Timeline Example Button 3
-	d3.select('body').append('div').attr('style','float:left;').append('input')
-	.attr('type', 'button')
-	.attr('name', 'romaButton')
-	.attr('value', 'AS Roma')
-	.on('click', function() {
-		updateTimeline(data['AS Roma'])
-	});
+	// Timeline legend
+	d3.select('#timelineContainter').append('div')
+		.attr('id', 'timelineLegend').attr('style','float:left;margin-top:4%');
 	
-
+	// Timeline Example Button 1 
+	d3.select('body').append('div').attr('id','timelineButtons')
+		.append('input')
+		.attr('type', 'button')
+		.attr('name', 'chelseaButton')
+		.attr('value', 'Chelsea')
+		.on('click', function() {
+			updateTimeline(['Chelsea']);
+		});
+	// Timeline Example Button 2
+	d3.select('#timelineButtons')
+		.append('input')
+		.attr('type', 'button')
+		.attr('name', 'madridButton')
+		.attr('value', 'Real Madrid')
+		.on('click', function() {
+			updateTimeline(['Chelsea',
+							'Real Madrid'
+							]);
+		});
+	// Timeline Example Button 3
+	d3.select('#timelineButtons').append('input')
+		.attr('type', 'button')
+		.attr('name', 'romaButton')
+		.attr('value', 'AS Roma')
+		.on('click', function() {
+			updateTimeline(['Chelsea',
+							'Real Madrid',
+							'AS Roma'
+							]);
+		});
+	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
 	    description: 'This is where a teams position over time will appear.',
@@ -214,16 +229,23 @@ d3.json("TeamPositions.json", function(data){
 	    interpolate: 'basic',
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
-	    y_accessor: 'position' // the key that accesses the y value
+	    y_accessor: 'position', // the key that accesses the y value
+	    legend: ['Chelsea'],
+	    legend_target: '#timelineLegend'
 	});
 });
 
 /**
- * Called to update the timeline when a new team is picked.
- * @param {Array} data An array containing a team's positions and years.
+ * Graphs a timeline (position vs. time) given an array of team names.
+ * @param {Array} team An array containing team names.
  */
-function updateTimeline(data) {
-	console.log(data);
+function updateTimeline(teams) {
+	console.log(teams);
+	var data = [];
+	for (var i = 0; i < teams.length; i++) {
+		data.push(timelineData[teams[i]]);
+	};
+	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
 	    description: 'This is where a teams position over time will appear.',
@@ -234,7 +256,9 @@ function updateTimeline(data) {
 	    interpolate: 'basic',
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
-	    y_accessor: 'position' // the key that accesses the y value
+	    y_accessor: 'position', // the key that accesses the y value
+	    legend: teams,
+	    legend_target: '#timelineLegend'
 	});
 }
 
