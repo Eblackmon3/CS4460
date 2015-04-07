@@ -521,7 +521,9 @@ function updateClickedStat(){
 	        chart_type: 'point',
 	        width: 600,
 	        height: 500,
+	        left: 100,
 	        right: 10,
+	        bottom: 70,
 	        target: '#statsAreaSVG',
 	        xax_format: function(f) {
 	            var pf = d3.formatPrefix(f);
@@ -532,6 +534,8 @@ function updateClickedStat(){
 	        color_accessor: 'country',
 	        color_type:'category',
 	        point_size: 4.5,
+	        x_label: 'Goals Against',
+	        y_label: 'Revenue',
 	        mouseover: function(d, i) { console.log(d,i); },
 	        y_rug: true
 	    });
