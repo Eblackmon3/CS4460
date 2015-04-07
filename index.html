@@ -231,11 +231,12 @@ d3.json("TeamPositions2.json", function(data){
 	d3.select("body").append("div").attr('id','timelineContainter')
 		// Timeline graph
 		.append('div').attr("id", "timeline")
-		.attr("style", "width:500px;float:left;");
+		.attr("style", "width:500px;");
 
 	// Timeline legend
 	d3.select('#timelineContainter').append('div')
-		.attr('id', 'timelineLegend').attr('style','float:left;margin-top:4%');
+		.attr('id', 'timelineLegend')
+		.attr('style','position:absolute;left:5%;');
 	
 	// Timeline Example Button 1 
 	d3.select('body').append('div').attr('id','timelineButtons')
@@ -271,6 +272,8 @@ d3.json("TeamPositions2.json", function(data){
 							'Liverpool'
 							]);
 		});
+	d3.select('#timelineButtons').
+		attr('style','margin-top:8px;position:absolute;bottom:6%;left:5%');
 	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
@@ -312,7 +315,7 @@ function updateTimeline(teams) {
 	    // description: 'This is where a teams position over time will appear.',
 	    data: data, 
 	    markers: markers,
-	    width: 600,
+	    width: 1000,
 	    height: 250,
 	    left: 80,
 	    right: 40,
