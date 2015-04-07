@@ -266,6 +266,7 @@ d3.json("TeamPositions2.json", function(data){
 	    left: 80,
 	    right: 40,
 	    bottom: 70,
+	    area: false,
 	    x_label: 'Season',
 	    y_label: 'Position',
 	    interpolate: 'basic',
@@ -440,28 +441,31 @@ d3.json("SoccerData.json", function(error, data) {
 		.attr('style', 'float:left;margin-left:15%;');
 	var teamList = document.getElementById('teamList');
 
-	// d3.select('body').append('div')
-	// 	.attr('id', 'scatterplot_test');
+	d3.select('body').append('div')
+		.attr('id', 'scatterplot_test')
+		.attr('style', 'width:100%;')
+		.attr('style', 'float:left; margin-left:5%;');
 
-	// MG.data_graphic({
- //        title: "Simple Scatterplot",
- //        data: gaVRevenue,
- //        chart_type: 'point',
- //        width: 295,
- //        height: 225,
- //        right: 10,
- //        target: '#scatterplot_test',
- //        xax_format: function(f) {
- //            var pf = d3.formatPrefix(f);
- //            return Math.round(pf.scale(f)) + pf.symbol;
- //        },
- //        x_accessor: 'ga',
- //        y_accessor: 'revenue',
- //        color_accessor: 'country',
- //        color_type:'category',
- //        mouseover: function(d, i) { console.log(d,i); },
- //        y_rug: true
- //    });
+	MG.data_graphic({
+        title: "Simple Scatterplot",
+        data: gaVRevenue,
+        chart_type: 'point',
+        // width: 295,
+        full_width: true,
+        height: 225,
+        right: 10,
+        target: '#scatterplot_test',
+        xax_format: function(f) {
+            var pf = d3.formatPrefix(f);
+            return Math.round(pf.scale(f)) + pf.symbol;
+        },
+        x_accessor: 'ga',
+        y_accessor: 'revenue',
+        color_accessor: 'country',
+        color_type:'category',
+        mouseover: function(d, i) { console.log(d,i); },
+        y_rug: true
+    });
 });
 
 function teamListChanged(team) {
