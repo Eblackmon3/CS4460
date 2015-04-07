@@ -111,6 +111,8 @@ pointer-events: none;
     </div>
 </div>
 
+
+
 <script>
 
 //set the margins for the canvas 
@@ -140,7 +142,21 @@ var gaArr=[];
 var gdArr=[];
 var pointsArr=[];
 
+var selectedTeams = [];
+var gaVRevenue = [];
 
+function getGaVRevenue(data, year) {
+	var j;
+	for (j = 0; j < data[''+year].length; j++) {
+		gaVRevenue[j] = {
+			"ga": data[''+year][j].stats.ga,
+			'revenue': data[''+year][j].revenue,
+			'country': data[''+year][j].name
+		};
+	
+	}
+	console.log(gaVRevenue);
+}
 
 //Convert the umerical dat within our json 
 function getSoccerData(year,data){
@@ -160,9 +176,27 @@ function getSoccerData(year,data){
 		gaArr.push(data[year][i]["stats"].ga);
 		gdArr.push(data[year][i]["stats"].gd);
 		pointsArr.push(data[year][i]["stats"].points);
-		}
-		
 	}
+		
+}
+
+function extractTeams(data) {
+	// console.log(data);
+	var i,j,
+		teams = [];
+	for (i = 2005; i < 2015; i++) {
+		// console.log(data[""+i][0]);
+		for (var j = 0; j < data[""+i].length; j++) {
+			// console.log(data[""+i][j].name);
+			if (teams.indexOf(data[""+i][j].name) < 0) {
+				teams.push(data[""+i][j].name);
+			}
+		}
+	}
+	console.log(teams);
+	teamNames = teams;
+	return teams;
+}
 
 // Markers for Timeline graph.
 var markers = [
@@ -176,7 +210,7 @@ var timelineData = {};
 
 d3.json("TeamPositions2.json", function(data){
 	timelineData = data;
-
+	
 	// Timeline Container to hold timeline and legend.
 	d3.select("body").append("div").attr('id','timelineContainter')
 		// Timeline graph
@@ -194,6 +228,7 @@ d3.json("TeamPositions2.json", function(data){
 		.attr('name', 'chelseaButton')
 		.attr('value', 'Chelsea')
 		.on('click', function() {
+			
 			updateTimeline(['Chelsea']);
 		});
 	// Timeline Example Button 2
@@ -215,13 +250,15 @@ d3.json("TeamPositions2.json", function(data){
 		.on('click', function() {
 			updateTimeline(['Chelsea',
 							'Real Madrid',
-							'AS Roma'
+							'AS Roma',
+							'Manchester United',
+							'Liverpool'
 							]);
 		});
 	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
-	    description: 'This is where a teams position over time will appear.',
+	    // description: 'This is where a teams position over time will appear.',
 	    data: data["Chelsea"], 
 	    markers: markers,
 	    width: 600,
@@ -238,6 +275,8 @@ d3.json("TeamPositions2.json", function(data){
 	    legend: ['Chelsea'],
 	    legend_target: '#timelineLegend'
 	});
+
+	
 });
 
 /**
@@ -245,7 +284,7 @@ d3.json("TeamPositions2.json", function(data){
  * @param {Array} team An array containing team names.
  */
 function updateTimeline(teams) {
-	console.log(teams);
+	// console.log(teams);
 	var data = [];
 	for (var i = 0; i < teams.length; i++) {
 		data.push(timelineData[teams[i]]);
@@ -253,7 +292,7 @@ function updateTimeline(teams) {
 	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
-	    description: 'This is where a teams position over time will appear.',
+	    // description: 'This is where a teams position over time will appear.',
 	    data: data, 
 	    markers: markers,
 	    width: 600,
@@ -371,12 +410,69 @@ function updateClickedStat(){
 		YLabelStat= "Position";
 	}
 	
-d3.json("SoccerData.json", function(error, data) {
-	//console.log(data["2014"]);
-		
-
+	d3.json("SoccerData.json", function(error, data) {
+		//console.log(data["2014"]);
+		console.log(data);
+		getSoccerData(data);
+		d3.select('body').append('div')
+			.attr('id', 'teamList');
+		var i;
+		for(i=0; i<teamNames.length;i++) {
+			d3.select('#teamList').append('div').attr('id','team_'+teamNames[i])
+				.append('input')
+				.attr('type','checkbox')
+				.attr('value',teamNames[i])
+				.attr('name',teamNames[i])
+				.html(teamNames[i]);
+		}
 	});
 	
+}
+
+d3.json("SoccerData.json", function(error, data) {
+	//console.log(data["2014"]);
+	// console.log(data);
+	getGaVRevenue(data,2014);
+	var teams = extractTeams(data);
+	// updateTimeline(teams);
+	d3.select('body').append('div')
+		.attr('id', 'teamList')
+		.attr('style', 'float:left;margin-left:15%;');
+	var teamList = document.getElementById('teamList');
+
+	// d3.select('body').append('div')
+	// 	.attr('id', 'scatterplot_test');
+
+	// MG.data_graphic({
+ //        title: "Simple Scatterplot",
+ //        data: gaVRevenue,
+ //        chart_type: 'point',
+ //        width: 295,
+ //        height: 225,
+ //        right: 10,
+ //        target: '#scatterplot_test',
+ //        xax_format: function(f) {
+ //            var pf = d3.formatPrefix(f);
+ //            return Math.round(pf.scale(f)) + pf.symbol;
+ //        },
+ //        x_accessor: 'ga',
+ //        y_accessor: 'revenue',
+ //        color_accessor: 'country',
+ //        color_type:'category',
+ //        mouseover: function(d, i) { console.log(d,i); },
+ //        y_rug: true
+ //    });
+});
+
+function teamListChanged(team) {
+	var index = selectedTeams.indexOf(teamList[i]);
+	if (input.checked && index < 0) {
+		selectedTeams.push(teams[i]);
+	}
+	else {
+		selectedTeams.remove(index)
+	}
+	updateTimeline(teamList);
 }
 
 /* create the x- axis and y-axis for the social chart and 
