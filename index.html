@@ -145,31 +145,32 @@ var pointsArr=[];
 var selectedTeams = [];
 var gaVRevenue = [];
 
-// function getGaVRevenue(data, year) {
-// 	var j;
-// 	for (j = 0; j < data[''+year].length; j++) {
-// 		gaVRevenue[j] = {
-// 			"ga": data[''+year][j].stats.ga,
-// 			'revenue': data[''+year][j].revenue,
-// 			'country': data[''+year][j].name
-// 		};
-	
-// 	}
-	
-// }
-
 function getGaVRevenue(data, year) {
-	var i;
-	for (i = 0; i < data[''+year].length; i++) {
-		gaVRevenue[i] = [
-			data[''+year][i].revenue,
-			data[''+year][i].stats.ga,
-			data[''+year][i].country,
-			data[''+year][i].name
-		];
+	var j;
+	for (j = 0; j < data[''+year].length; j++) {
+		gaVRevenue[j] = {
+			"ga": data[''+year][j].stats.ga,
+			'revenue': data[''+year][j].revenue,
+			'country': data[''+year][j].country,
+			'team': data[''+year][j].name
+		};
+	
 	}
-	console.log(gaVRevenue);
+	
 }
+
+// function getGaVRevenue(data, year) {
+// 	var i;
+// 	for (i = 0; i < data[''+year].length; i++) {
+// 		gaVRevenue[i] = [
+// 			data[''+year][i].revenue,
+// 			data[''+year][i].stats.ga,
+// 			data[''+year][i].country,
+// 			data[''+year][i].name
+// 		];
+// 	}
+// 	console.log(gaVRevenue);
+// }
 
 
 
@@ -514,23 +515,26 @@ function updateClickedStat(){
 		getGaVRevenue(data,2014);
 		// console.log(gaVRevenue);
 
-		// MG.data_graphic({
-	 //        title: "Simple Scatterplot",
-	 //        data: gaVRevenue,
-	 //        chart_type: 'point',
-	 //        width: 600,
-	 //        height: 500,
-	 //        right: 10,
-	 //        target: '#statsAreaSVG',
-	 //        xax_format: function(f) {
-	 //            var pf = d3.formatPrefix(f);
-	 //            return Math.round(pf.scale(f)) + pf.symbol;
-	 //        },
-	 //        x_accessor: 'ga',
-	 //        y_accessor: 'revenue',
-	 //        mouseover: function(d, i) { console.log(d,i); },
-	 //        y_rug: true
-	 //    });
+		MG.data_graphic({
+	        title: "Simple Scatterplot",
+	        data: gaVRevenue,
+	        chart_type: 'point',
+	        width: 600,
+	        height: 500,
+	        right: 10,
+	        target: '#statsAreaSVG',
+	        xax_format: function(f) {
+	            var pf = d3.formatPrefix(f);
+	            return Math.round(pf.scale(f)) + pf.symbol;
+	        },
+	        x_accessor: 'ga',
+	        y_accessor: 'revenue',
+	        color_accessor: 'country',
+	        color_type:'category',
+	        point_size: 4.5,
+	        mouseover: function(d, i) { console.log(d,i); },
+	        y_rug: true
+	    });
 });
 		
 
