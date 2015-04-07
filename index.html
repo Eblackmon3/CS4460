@@ -145,18 +145,33 @@ var pointsArr=[];
 var selectedTeams = [];
 var gaVRevenue = [];
 
-function getGaVRevenue(data, year) {
-	var j;
-	for (j = 0; j < data[''+year].length; j++) {
-		gaVRevenue[j] = {
-			"ga": data[''+year][j].stats.ga,
-			'revenue': data[''+year][j].revenue,
-			'country': data[''+year][j].name
-		};
+// function getGaVRevenue(data, year) {
+// 	var j;
+// 	for (j = 0; j < data[''+year].length; j++) {
+// 		gaVRevenue[j] = {
+// 			"ga": data[''+year][j].stats.ga,
+// 			'revenue': data[''+year][j].revenue,
+// 			'country': data[''+year][j].name
+// 		};
 	
+// 	}
+	
+// }
+
+function getGaVRevenue(data, year) {
+	var i;
+	for (i = 0; i < data[''+year].length; i++) {
+		gaVRevenue[i] = [
+			data[''+year][i].revenue,
+			data[''+year][i].stats.ga,
+			data[''+year][i].country,
+			data[''+year][i].name
+		];
 	}
 	console.log(gaVRevenue);
 }
+
+
 
 //Convert the umerical dat within our json 
 function getSoccerData(year,data){
@@ -261,7 +276,7 @@ d3.json("TeamPositions2.json", function(data){
 	    // description: 'This is where a teams position over time will appear.',
 	    data: data["Chelsea"], 
 	    markers: markers,
-	    width: 600,
+	    width: 1000,
 	    height: 250,
 	    left: 80,
 	    right: 40,
@@ -327,6 +342,7 @@ color = d3.scale.category20();
 var statChart = d3.select("#statArea").append("svg")
 .attr("width", (width + margin.left + margin.right))
 .attr("height", height + margin.top + margin.bottom)
+.attr('id','statsAreaSVG')
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -492,9 +508,29 @@ function updateClickedStat(){
 		YLabelStat= "Position";
 	}
 	
-d3.json("SoccerData.json", function(error, data) {
-	getSoccerData(year,data);
+	d3.json("SoccerData.json", function(error, data) {
+		getSoccerData(year,data);
 		drawStat(data);	
+		getGaVRevenue(data,2014);
+		// console.log(gaVRevenue);
+
+		// MG.data_graphic({
+	 //        title: "Simple Scatterplot",
+	 //        data: gaVRevenue,
+	 //        chart_type: 'point',
+	 //        width: 600,
+	 //        height: 500,
+	 //        right: 10,
+	 //        target: '#statsAreaSVG',
+	 //        xax_format: function(f) {
+	 //            var pf = d3.formatPrefix(f);
+	 //            return Math.round(pf.scale(f)) + pf.symbol;
+	 //        },
+	 //        x_accessor: 'ga',
+	 //        y_accessor: 'revenue',
+	 //        mouseover: function(d, i) { console.log(d,i); },
+	 //        y_rug: true
+	 //    });
 });
 		
 
