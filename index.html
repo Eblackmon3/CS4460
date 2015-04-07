@@ -100,14 +100,14 @@ pointer-events: none;
 <div style="display: table-cell; width: 120;">
 <button id="updateYear" onclick="updateYear()">Update</button>
 </div>
-
+</div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <!-- Setup Chart areas-->
 <div style="width: 100%; display: table;">
     <div style="display: table-row">
-        <div id= "statArea" style="width: 200px; display: table-cell;">  </div>
-        <div id= "SocialArea" style="display: table-cell;"> </div>
+        <div id= "statArea" style=" display: table-cell;">  </div>
+        <div id= "socialArea" style="display: table-cell;"> </div>
     </div>
 </div>
 
@@ -117,7 +117,7 @@ pointer-events: none;
 
 //set the margins for the canvas 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-width = 970 - margin.left - margin.right,
+width = 750 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
 //Create the label and scale holders for the Stat and Social graph 
@@ -325,7 +325,7 @@ color = d3.scale.category20();
 
 //connect the svg elements to both the stat chart and the social revenue chart 
 var statChart = d3.select("#statArea").append("svg")
-.attr("width", (width + margin.left + margin.right)/1.225)
+.attr("width", (width + margin.left + margin.right))
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -379,7 +379,88 @@ function updateYear(){
 year= getYear();
 console.log(year);
 }
+function drawStat(data){
+	//setup x 
+	var xValue = function(d) { return d[XLabelsStat];}, // data -> value
+	xScale = d3.scale.linear().range([0, width]), // value -> display
+	xMap = function(d) { return xScale(xValue(d));}, // data -> display
+	xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
+	// setup y
+	var yValue = function(d) { return d[YLabelStat];}, // data -> value
+	yScale = d3.scale.linear().range([height, 0]), // value -> display
+	yMap = function(d) { return yScale(yValue(d));}, // data -> display
+	yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+	xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
+	yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+	
+	// x-axis
+	statChart.append("g")
+	.attr("class", "x axis")
+	.attr("transform", "translate(0," + height + ")")
+	.call(xAxis)
+	.append("text")
+	.attr("class", "label")
+	.attr("x", width)
+	.attr("y", -6)
+	.style("text-anchor", "end")
+	.text(XLabelStat);
+
+	// y-axis
+	statChart.append("g")
+	.attr("class", "y axis")
+	.call(yAxis)
+	.append("text")
+	.attr("class", "label")
+	.attr("transform", "rotate(-90)")
+	.attr("y", 7)
+	.attr("dy", ".71em")
+	.style("text-anchor", "end")
+	.text(YLabelStat);
+
+}
+function drawSocial(data){
+	//setup x 
+	var xValue = function(d) { return d[XLabelsSocial];}, // data -> value
+	xScale = d3.scale.linear().range([0, width]), // value -> display
+	xMap = function(d) { return xScale(xValue(d));}, // data -> display
+	xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+
+	// setup y
+	var yValue = function(d) { return d[YLabelSocial];}, // data -> value
+	yScale = d3.scale.linear().range([height, 0]), // value -> display
+	yMap = function(d) { return yScale(yValue(d));}, // data -> display
+	yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+	xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
+	yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+	
+	// x-axis
+	socialChart.append("g")
+	.attr("class", "x axis")
+	.attr("transform", "translate(0," + height + ")")
+	.call(xAxis)
+	.append("text")
+	.attr("class", "label")
+	.attr("x", width)
+	.attr("y", -6)
+	.style("text-anchor", "end")
+	.text(XLabelSocial);
+
+	// y-axis
+	socialChart.append("g")
+	.attr("class", "y axis")
+	.call(yAxis)
+	.append("text")
+	.attr("class", "label")
+	.attr("transform", "rotate(-90)")
+	.attr("y", 7)
+	.attr("dy", ".71em")
+	.style("text-anchor", "end")
+	.text(YLabelSocial);
+
+}
 /* create the x- axis and y-axis for the stat chart and 
  * upload the information ONCE WE HAVE TIME ASSOCIATED WE WILL NEED TO ADJUST DATA INPUT
  */
@@ -411,62 +492,14 @@ function updateClickedStat(){
 		YLabelStat= "Position";
 	}
 	
-	d3.json("SoccerData.json", function(error, data) {
-		//console.log(data["2014"]);
-		console.log(data);
-		getSoccerData(data);
-		d3.select('body').append('div')
-			.attr('id', 'teamList');
-		var i;
-		for(i=0; i<teamNames.length;i++) {
-			d3.select('#teamList').append('div').attr('id','team_'+teamNames[i])
-				.append('input')
-				.attr('type','checkbox')
-				.attr('value',teamNames[i])
-				.attr('name',teamNames[i])
-				.html(teamNames[i]);
-		}
-	});
+d3.json("SoccerData.json", function(error, data) {
+	getSoccerData(year,data);
+		drawStat(data);	
+});
+		
+
 	
 }
-
-d3.json("SoccerData.json", function(error, data) {
-	//console.log(data["2014"]);
-	// console.log(data);
-	getGaVRevenue(data,2014);
-	var teams = extractTeams(data);
-	// updateTimeline(teams);
-	d3.select('body').append('div')
-		.attr('id', 'teamList')
-		.attr('style', 'float:left;margin-left:15%;');
-	var teamList = document.getElementById('teamList');
-
-	d3.select('body').append('div')
-		.attr('id', 'scatterplot_test')
-		.attr('style', 'width:100%;')
-		.attr('style', 'float:left; margin-left:5%;');
-
-	MG.data_graphic({
-        title: "Simple Scatterplot",
-        data: gaVRevenue,
-        chart_type: 'point',
-        // width: 295,
-        full_width: true,
-        height: 225,
-        right: 10,
-        target: '#scatterplot_test',
-        xax_format: function(f) {
-            var pf = d3.formatPrefix(f);
-            return Math.round(pf.scale(f)) + pf.symbol;
-        },
-        x_accessor: 'ga',
-        y_accessor: 'revenue',
-        color_accessor: 'country',
-        color_type:'category',
-        mouseover: function(d, i) { console.log(d,i); },
-        y_rug: true
-    });
-});
 
 function teamListChanged(team) {
 	var index = selectedTeams.indexOf(teamList[i]);
@@ -510,9 +543,7 @@ function updateClickedSocial(){
 		d3.json("SoccerData.json", function(error, data) {
 	
 		getSoccerData(year,data);
-		console.log(gaArr);
-		console.log(pointsArr);
-		//drawSocial(XLabelSocial, YLabelSocial);
+		drawSocial(data);
 
 	});
 }
