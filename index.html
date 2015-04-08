@@ -354,6 +354,9 @@ d3.json("SoccerData.json", function(error, data) {
 	$('#ydropdownStat').change(function() {
 		updateScatterplot(data);
 	});
+	$('#yearDropDown').change(function() {
+		updateScatterplot(data);
+	});
 });
 
 
