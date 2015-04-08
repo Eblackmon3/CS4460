@@ -232,7 +232,25 @@ function updateScatterplot(json) {
         x_label: x,
         y_label: y,
         linked: true,
-        mouseover: function(d, i) { console.log(d,i); },
+        mouseover: function(d, i) { 
+        	console.log(d,i);
+        	var graph = document.getElementById('statArea').getBoundingClientRect();
+        	// console.log(graph.top,graph.bottom,graph.left,graph.right);
+        	var point = d.point;
+        	tooltip.transition()
+        		.duration(200)
+        		.style('opacity', .9)
+        	tooltip.html('<b>Team:</b> '+point.team+'<br/>'+'<b>Country:</b> '+
+        		point.country)
+        	.style('right', (graph.right + 400)+'px')
+        	.style('top', (graph.top + 280)+'px')
+        	.style('line-height', '150%');
+         },
+         mouseout: function() {
+         	tooltip.transition()
+         		.duration(500)
+         		.style('opacity', 0);
+         },
         y_rug: true,
 
     });
