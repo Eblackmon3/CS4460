@@ -39,7 +39,7 @@ pointer-events: none;
 
 <body>
 <!-- Selection for the Statistics Graph-->
-<div style="display: table-cell; width: 120;">
+<div style="display: table-cell; width: 120;position:absolute;left:5%;">
 <label for="xdropdownStat">X: </label>
 <select id="xdropdownStat">
 	<option value="ga">Goals Against</option>
@@ -48,43 +48,43 @@ pointer-events: none;
 	<option value="points">Points</option>
 </select>
 </div>
-<div style="display: table-cell; width: 150;">
+<div style="display: table-cell; width: 150;position:absolute;left:11%;">
 <label for="ydropdownStat">Y: </label><select id="ydropdownStat">
 <option value="revenue">Revenue</option>
 <option value="position">Position</option>
 
 </select>
 </div>
-<div style="display: table-cell; width: 150;">
+<!-- <div style="display: table-cell; width: 150;">
 <button id="updateStat" onclick="updateClickedStat()">Update</button>
-</div>
+</div> -->
 </div>
 
 
 
 <!--Selection for the Social media Graph -->
-<div style="display: table-cell; width: 120;">
-<label for="xdropdownSocial">X: </label><select id="xdropdownSocial">
-<option value="twitter">Twitter Followers</option>
-<option value="facebook">Facebook Followers</option>
-
+<div style="display: table-cell; width: 120; position:absolute; right:40%;">
+<label for="xdropdownSocial">X: </label>
+<select id="xdropdownSocial">
+	<option value="twitter">Twitter Followers</option>
+	<option value="facebook">Facebook Followers</option>
 </select>
 </div>
-<div style="display: table-cell; width: 150;">
-<label for="ydropdownSocial">Y: </label><select id="ydropdownSocial">
-<option value="revenue">Revenue</option>
-<option value="position">Position</option>
-
+<!-- <div style="display: table-cell; width: 150;">
+<label for="ydropdownSocial">Y: </label>
+<select id="ydropdownSocial">
+	<option value="revenue">Revenue</option>
+	<option value="position">Position</option>
 </select>
-</div>
-<div style="display: table-cell; width: 150;">
+</div>  -->
+<!-- <div style="display: table-cell; width: 150;">
 <button id="updateSocial" onclick="updateClickedSocial()">Update</button>
-</div>
+</div> -->
 </div>
 
 <!-- Year Selector-->
 
-<div style="display: table-cell; width: 120;">
+<div style="display: table-cell; width: 120;position:absolute;right:59%;">
 <label for="yearDropDown">Year: </label>
 <select id="yearDropDown" onchange="">
 	<option value="2014">2014</option>
@@ -99,7 +99,7 @@ pointer-events: none;
 	<option value="2005">2005</option>
 </select>
 <div style="display: table-cell; width: 120;">
-<button id="updateYear" onclick="updateYear()">Update</button>
+<!-- <button id="updateYear" onclick="updateYear()">Update</button> -->
 </div>
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -150,23 +150,43 @@ var gaVRevenue = [];
 
 function getScatterplotData(data,x,y) {
 	var year = document.getElementById('yearDropDown').value;
-	console.log(year);
-	console.log(data);
 
 	var scatterData = [];
 	var j;
 	for (j = 0; j < data[''+year].length; j++) {
 		scatterData[j] = {};
-		//console.log(data[''+year]);
-		//console.log(data[''+year][j]);
+
 		scatterData[j][x] = parseInt(data[''+year][j].stats[x]);
-		console.log(x+': '+scatterData[j][x]);
 		scatterData[j][y] = parseFloat(data[''+year][j][y]);
-		console.log(y+': '+scatterData[j][y]);
+
 		scatterData[j]['country'] = data[''+year][j].country;
 		scatterData[j]['team'] = data[''+year][j].name;
+		scatterData[j]['twitter'] = data[''+year][j].twitter;
+		scatterData[j]['facebook'] = data[''+year][j].facebook;
 	}
-	console.log(scatterData);
+	// console.log(year);
+	if (parseInt(year) > 2012) {
+		$('#socialAreaSVG').remove();
+		var social = document.getElementById('#socialAreaSVG');
+		if (social == null) {
+			console.log(social);
+			d3.select('#socialArea').append('svg')
+				.attr('id','socialAreaSVG')
+				.attr("width", (width + margin.left + margin.right))
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		}
+		console.log('year greater than 2012');
+		updateSocialGraph(data);
+	}
+	if (parseInt(year) < 2013) {
+		// console.log('year less than 2013');
+		// console.log($('socialAreaSVG'));
+		$('#socialAreaSVG').remove();
+	}
+
+
 	return scatterData;
 }
 
@@ -174,9 +194,9 @@ function updateScatterplot(json) {
 	var x = document.getElementById('xdropdownStat').value;
 	var y = document.getElementById('ydropdownStat').value;
 
-	console.log(x);
-	console.log(y);
+	
 	var data = getScatterplotData(json,x,y);
+	// updateSocialGraph(json);
 	//console.log(data);
 	var colorRange = 
 		['red','blue','black','green','violet','brown','orange'],
@@ -207,25 +227,83 @@ function updateScatterplot(json) {
         color_range: colorRange,
         point_size: 4.5,
         x_label: x,
-        y_label: y,
+        y_label: y == 'revenue' ? y+=' (millions of €)':y,
+        linked: true,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
 
     });
 }
 
-// function getGaVRevenue(data, year) {
-// 	var i;
-// 	for (i = 0; i < data[''+year].length; i++) {
-// 		gaVRevenue[i] = [
-// 			data[''+year][i].revenue,
-// 			data[''+year][i].stats.ga,
-// 			data[''+year][i].country,
-// 			data[''+year][i].name
-// 		];
-// 	}
-// 	console.log(gaVRevenue);
-// }
+function getSocialData(data,x,y) {
+	
+	var year = document.getElementById('yearDropDown').value;
+
+	var socialData = [];
+	var i;
+	for (var i = 0; i < data[''+year].length; i++) {
+		socialData[i] = {};
+		// Twitter or Facebook Followers
+		socialData[i][x] = parseFloat(data[''+year][i][x]);
+		// Revenue or Position	
+		socialData[i][y] = parseFloat(data[''+year][i][y]);
+		socialData[i]['ga'] = parseInt(data[''+year][i].stats.ga);
+		socialData[i]['gf'] = parseInt(data[''+year][i].stats.gf);
+		socialData[i]['gd'] = parseInt(data[''+year][i].stats.gd);
+		socialData[i]['points'] = parseInt(data[''+year][i].stats.points);
+		socialData[i]['country'] = data[''+year][i].country;
+		socialData[i]['team'] = data[''+year][i].name;
+	}
+
+	// console.log(socialData);
+	return socialData;
+}
+
+function updateSocialGraph(json) {
+	var x = document.getElementById('xdropdownSocial').value;
+	// Y is same for scatterplot and social graph
+	var y = document.getElementById('ydropdownStat').value;
+
+
+	var data = getSocialData(json,x,y);
+
+	var colorRange = 
+		['red','blue','black','green','violet','brown','orange'],
+		colorDomain =
+		['Spain','England','Germany','France','Italy',
+		'Turkey','Scotland'];
+
+
+	MG.data_graphic({
+        title: "Social Media Graph",
+        data: data,
+        chart_type: 'point',
+        width: 700,
+        height: 500,
+        left: 100,
+        right: 10,
+        bottom: 70,
+        target: '#socialAreaSVG',
+        xax_format: function(f) {
+            var pf = d3.formatPrefix(f);
+            return Math.round(pf.scale(f)) + pf.symbol;
+        },
+        x_accessor: x,
+        y_accessor: y,
+        color_accessor: 'country',
+        color_domain: colorDomain,
+        color_type:'category',
+        color_range: colorRange,
+        point_size: 4.5,
+        x_label: x += ' Followers',
+        y_label: y == 'revenue' ? y+=' (millions of €)':y,
+        linked: true,
+        mouseover: function(d, i) { console.log(d,i); },
+        y_rug: true,
+
+    });
+}
+
 
 
 
@@ -358,10 +436,10 @@ d3.json("SoccerData.json", function(error, data) {
 	drawStat(data);	
 	// getGaVRevenue(data,2014);
 	// console.log(gaVRevenue);
+	updateScatterplot(data);
 
 	d3.select('#statArea').append('div')
 		.attr('id', 'statsAreaLegend');
-	updateScatterplot(data);
 
 	$('#xdropdownStat').change(function() {
 		updateScatterplot(data);
@@ -371,6 +449,9 @@ d3.json("SoccerData.json", function(error, data) {
 	});
 	$('#yearDropDown').change(function() {
 		updateScatterplot(data);
+	});
+	$('#xdropdownSocial').change(function() {
+		updateSocialGraph(data);
 	});
 });
 
@@ -403,7 +484,8 @@ function updateTimeline(teams) {
 	    x_accessor: 'year',  // the key that accesses the x value
 	    y_accessor: 'position', // the key that accesses the y value
 	    legend: teams,
-	    legend_target: '#timelineLegend'
+	    legend_target: '#timelineLegend',
+
 	});
 }
 
@@ -426,11 +508,12 @@ var statChart = d3.select("#statArea").append("svg")
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var socialChart = d3.select("#socialArea").append("svg")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
-.append("g")
-.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// var socialChart = d3.select("#socialArea").append("svg")
+// .attr('id', 'socialAreaSVG')
+// .attr("width", width + margin.left + margin.right)
+// .attr("height", height + margin.top + margin.bottom)
+// .append("g")
+// .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //add the tool tip which we will use for the hoover effect for both charts 
 var tooltip = d3.select("body").append("div")
