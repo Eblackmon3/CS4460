@@ -178,7 +178,12 @@ function updateScatterplot(json) {
 	console.log(y);
 	var data = getScatterplotData(json,x,y);
 	//console.log(data);
-	
+	var colorRange = 
+		['red','blue','green','yellow','brown','orange','violet'],
+		colorDomain =
+		['Spain','England','Germany','France','Italy',
+		'Turkey','Scotland'];
+
 
 	MG.data_graphic({
         title: "European Teams",
@@ -197,12 +202,15 @@ function updateScatterplot(json) {
         x_accessor: x,
         y_accessor: y,
         color_accessor: 'country',
+        color_domain: colorDomain,
         color_type:'category',
+        color_range: colorRange,
         point_size: 4.5,
         x_label: x,
         y_label: y,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
+
     });
 }
 
@@ -351,7 +359,7 @@ d3.json("SoccerData.json", function(error, data) {
 	// getGaVRevenue(data,2014);
 	// console.log(gaVRevenue);
 
-	d3.select('statArea').append('div')
+	d3.select('#statArea').append('div')
 		.attr('id', 'statsAreaLegend');
 	updateScatterplot(data);
 
