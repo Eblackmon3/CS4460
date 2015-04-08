@@ -1135,7 +1135,13 @@
 				"revenue": "438.6",
 				"position": "2",
 				"twitter": "",
-				"facebook": ""	
+				"facebook": "",
+				"stats": {
+					"ga": "35",
+					"gf": "102",
+					"gd": "67",
+					"points": "96"
+				}
 			},
 			{
 				"name": "Manchester United",
@@ -1143,7 +1149,13 @@
 				"revenue": "349.8",
 				"position": "2",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "24",
+					"gf": "68",
+					"gd": "44",
+					"points": "90"
+				}
 			},
 			{
 				"name": "Bayern Munich",
@@ -1151,7 +1163,13 @@
 				"revenue": "323",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "31",
+					"gf": "72",
+					"gd": "41",
+					"points": "70"
+				}
 			},
 			{
 				"name": "FC Barcelona",
@@ -1159,7 +1177,13 @@
 				"revenue": "398.1",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "24",
+					"gf": "98",
+					"gd": "74",
+					"points": "99"
+				}
 			},
 			{
 				"name": "Manchester City",
@@ -1167,7 +1191,13 @@
 				"revenue": "152.8",
 				"position": "5",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "50",
+					"gf": "58",
+					"gd": "8",
+					"points": "50"
+				}
 			},
 			{
 				"name": "Chelsea",
@@ -1175,7 +1205,13 @@
 				"revenue": "255.9",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "24",
+					"gf": "68",
+					"gd": "44",
+					"points": "83"
+				}
 			},
 			{
 				"name": "Arsenal",
@@ -1183,7 +1219,13 @@
 				"revenue": "274.1",
 				"position": "3",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "37",
+					"gf": "68",
+					"gd": "31",
+					"points": "72"
+				}
 			},
 			{
 				"name": "Liverpool",
@@ -1191,15 +1233,27 @@
 				"revenue": "225.3",
 				"position": "7",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "27",
+					"gf": "77",
+					"gd": "50",
+					"points": "86"
+				}
 			},
 			{
 				"name": "Juventus",
 				"country": "Italy",
 				"revenue": "205",
-				"position": "2",
+				"position": "7",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "56",
+					"gf": "55",
+					"gd": "-1",
+					"points": "55"
+				}
 			},
 			{
 				"name": "Borrusia Dortmund",
@@ -1207,7 +1261,13 @@
 				"revenue": "138.5",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "42",
+					"gf": "54",
+					"gd": "12",
+					"points": "57"
+				}
 			},
 			{
 				"name": "AC Milan",
@@ -1215,7 +1275,13 @@
 				"revenue": "235.8",
 				"position": "3",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "39",
+					"gf": "60",
+					"gd": "21",
+					"points": "70"
+				}
 			},
 			{
 				"name": "Tottenham Hotspur",
@@ -1223,7 +1289,13 @@
 				"revenue": "146.3",
 				"position": "4",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "45",
+					"gf": "45",
+					"gd": "0",
+					"points": "51"
+				}
 			},
 			{
 				"name": "Schalke 04",
@@ -1231,7 +1303,13 @@
 				"revenue": "139.8",
 				"position": "2",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "31",
+					"gf": "53",
+					"gd": "22",
+					"points": "65"
+				}
 			},
 			{
 				"name": "Atletico de Madrid",
@@ -1239,7 +1317,13 @@
 				"revenue": "124.5",
 				"position": "9",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "61",
+					"gf": "57",
+					"gd": "-4",
+					"points": "47"
+				}
 			},
 			{
 				"name": "Internazionale",
@@ -1247,7 +1331,13 @@
 				"revenue": "224.8",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "34",
+					"gf": "75",
+					"gd": "41",
+					"points": "82"
+				}
 			},
 			{
 				"name": "Hamburger SV",
@@ -1255,7 +1345,13 @@
 				"revenue": "146.2",
 				"position": "7",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "41",
+					"gf": "56",
+					"gd": "15",
+					"points": "52"
+				}
 			},
 			{
 				"name": "AS Roma",
@@ -1263,7 +1359,13 @@
 				"revenue": "122.7",
 				"position": "2",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "41",
+					"gf": "68",
+					"gd": "27",
+					"points": "80"
+				}
 			},
 			{
 				"name": "Olympique de Marseille",
@@ -1271,7 +1373,13 @@
 				"revenue": "141.1",
 				"position": "1",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "36",
+					"gf": "69",
+					"gd": "33",
+					"points": "78"
+				}
 			},
 			{
 				"name": "Olympique Lyonnais",
@@ -1279,7 +1387,13 @@
 				"revenue": "146.1",
 				"position": "2",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "38",
+					"gf": "64",
+					"gd": "26",
+					"points": "72"
+				}
 			},
 			{
 				"name": "VfB Stuttgart",
@@ -1287,7 +1401,13 @@
 				"revenue": "114.8",
 				"position": "6",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "41",
+					"gf": "51",
+					"gd": "10",
+					"points": "55"
+				}
 			},
 			{
 				"name": "Aston Villa",
@@ -1295,7 +1415,13 @@
 				"revenue": "109.4",
 				"position": "6",
 				"twitter": "",
-				"facebook": ""
+				"facebook": "",
+				"stats": {
+					"ga": "48",
+					"gf": "54",
+					"gd": "6",
+					"points": "62"
+				}
 			}
 		],
 		"2009": [
