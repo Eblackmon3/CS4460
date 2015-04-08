@@ -204,15 +204,17 @@ function updateScatterplot(json) {
 		['Spain','England','Germany','France','Italy',
 		'Turkey','Scotland'];
 
-
+		if (y == 'revenue') {
+			console.log('y is revenue');
+		}
 	MG.data_graphic({
         title: "European Teams",
         data: data,
         chart_type: 'point',
         width: 600,
         height: 500,
-        left: 100,
-        right: 10,
+        left: 150,
+        right: 20,
         bottom: 70,
         target: '#statsAreaSVG',
         xax_format: function(f) {
@@ -221,13 +223,14 @@ function updateScatterplot(json) {
         },
         x_accessor: x,
         y_accessor: y,
+        yax_units: y == 'revenue' ? '€' : '',
         color_accessor: 'country',
         color_domain: colorDomain,
         color_type:'category',
         color_range: colorRange,
         point_size: 4.5,
         x_label: x,
-        y_label: y == 'revenue' ? y+=' (millions of €)':y,
+        y_label: y,
         linked: true,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
@@ -280,7 +283,7 @@ function updateSocialGraph(json) {
         chart_type: 'point',
         width: 700,
         height: 500,
-        left: 100,
+        left: 150,
         right: 10,
         bottom: 70,
         target: '#socialAreaSVG',
@@ -296,7 +299,8 @@ function updateSocialGraph(json) {
         color_range: colorRange,
         point_size: 4.5,
         x_label: x += ' Followers',
-        y_label: y == 'revenue' ? y+=' (millions of €)':y,
+        y_label: y,
+        yax_units: y == 'revenue' ? '€' : '',
         linked: true,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
@@ -431,11 +435,23 @@ d3.json("TeamPositions2.json", function(data){
 });
 
 
+function updateRevenue(data) {
+	var i,j;
+	for(i = 2005; i < 2015; i++) {
+		j = 0;
+		for (var j = 0; j < data[i].length; j++) {
+			data[i][j].revenue *= 1000000;
+		};
+	}
+	// console.log(data);
+}
+
 d3.json("SoccerData.json", function(error, data) {
-	getSoccerData(year,data);
-	drawStat(data);	
+	// getSoccerData(year,data);
+	// drawStat(data);	
 	// getGaVRevenue(data,2014);
 	// console.log(gaVRevenue);
+	updateRevenue(data);
 	updateScatterplot(data);
 
 	d3.select('#statArea').append('div')
