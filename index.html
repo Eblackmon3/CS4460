@@ -40,18 +40,18 @@ pointer-events: none;
 <body>
 <!-- Selection for the Statistics Graph-->
 <div style="display: table-cell; width: 120;">
-<label for="xdropdownStat">X: </label><select id="xdropdownStat">
-<option val="region">Goals Against</option>
-<option val="category">Goals For</option>
-<option val="region">Goal Differential</option>
-<option val="category">Points</option>
-
+<label for="xdropdownStat">X: </label>
+<select id="xdropdownStat">
+	<option value="ga">Goals Against</option>
+	<option value="gf">Goals For</option>
+	<option value="gd">Goal Differential</option>
+	<option value="points">Points</option>
 </select>
 </div>
 <div style="display: table-cell; width: 150;">
 <label for="ydropdownStat">Y: </label><select id="ydropdownStat">
-<option val="sales">Revenue</option>
-<option val="profit">Position</option>
+<option value="revenue">Revenue</option>
+<option value="position">Position</option>
 
 </select>
 </div>
@@ -65,15 +65,15 @@ pointer-events: none;
 <!--Selection for the Social media Graph -->
 <div style="display: table-cell; width: 120;">
 <label for="xdropdownSocial">X: </label><select id="xdropdownSocial">
-<option val="region">Twitter Followers</option>
-<option val="category">Facebook Followers</option>
+<option value="twitter">Twitter Followers</option>
+<option value="facebook">Facebook Followers</option>
 
 </select>
 </div>
 <div style="display: table-cell; width: 150;">
 <label for="ydropdownSocial">Y: </label><select id="ydropdownSocial">
-<option val="sales">Revenue</option>
-<option val="profit">Position</option>
+<option value="revenue">Revenue</option>
+<option value="position">Position</option>
 
 </select>
 </div>
@@ -85,17 +85,17 @@ pointer-events: none;
 <!-- Year Selector-->
 
 <div style="display: table-cell; width: 120;">
-<label for="yearDropDown">Year: </label><select id="yearDropDown">
-<option val="region">2014</option>
-<option val="category">2013</option>
-<option val="region">2012</option>
-<option val="category">2010</option>
-<option val="region">2009</option>
-<option val="category">2008</option>
-<option val="region">2007</option>
-<option val="category">2006</option>
-<option val="category">2005</option>
-
+<label for="yearDropDown">Year: </label>
+<select id="yearDropDown" onchange="">
+	<option value="2014">2014</option>
+	<option value="2013">2013</option>
+	<option value="2012">2012</option>
+	<option value="2010">2010</option>
+	<option value="2009">2009</option>
+	<option value="2008">2008</option>
+	<option value="2007">2007</option>
+	<option value="2006">2006</option>
+	<option value="2005">2005</option>
 </select>
 <div style="display: table-cell; width: 120;">
 <button id="updateYear" onclick="updateYear()">Update</button>
@@ -145,18 +145,58 @@ var pointsArr=[];
 var selectedTeams = [];
 var gaVRevenue = [];
 
-function getGaVRevenue(data, year) {
+
+
+function getScatterplotData(data,x,y) {
+	var year = document.getElementById('yearDropDown').value;
+
+	var scatterData = [];
 	var j;
 	for (j = 0; j < data[''+year].length; j++) {
-		gaVRevenue[j] = {
-			"ga": data[''+year][j].stats.ga,
-			'revenue': data[''+year][j].revenue,
-			'country': data[''+year][j].country,
-			'team': data[''+year][j].name
-		};
-	
+		scatterData[j] = {};
+
+		scatterData[j][x] = parseInt(data[''+year][j].stats[x]);
+		scatterData[j][y] = data[''+year][j][y];
+		scatterData[j]['country'] = data[''+year][j].country;
+		scatterData[j]['team'] = data[''+year][j].name;
 	}
-	
+	console.log(scatterData);
+	return scatterData;
+}
+
+function updateScatterplot(json) {
+	var x = document.getElementById('xdropdownStat').value;
+	var y = document.getElementById('ydropdownStat').value;
+
+	var data = getScatterplotData(json,x,y);
+	// console.log(data);
+	console.log(x);
+	console.log(y);
+
+	MG.data_graphic({
+        title: "European Teams",
+        data: data,
+        chart_type: 'point',
+        width: 600,
+        height: 500,
+        left: 100,
+        right: 10,
+        bottom: 70,
+        target: '#statsAreaSVG',
+        xax_format: function(f) {
+            var pf = d3.formatPrefix(f);
+            return Math.round(pf.scale(f)) + pf.symbol;
+        },
+        x_accessor: x,
+        y_accessor: y,
+        color_accessor: 'country',
+        color_type:'category',
+        point_size: 4.5,
+        x_label: x,
+        y_label: y,
+        mouseover: function(d, i) { console.log(d,i); },
+        y_rug: true,
+    });
 }
 
 // function getGaVRevenue(data, year) {
@@ -294,10 +334,28 @@ d3.json("TeamPositions2.json", function(data){
 	    y_accessor: 'position', // the key that accesses the y value
 	    legend: ['Chelsea'],
 	    legend_target: '#timelineLegend'
-	});
-
-	
+	});	
 });
+
+
+d3.json("SoccerData.json", function(error, data) {
+	getSoccerData(year,data);
+	drawStat(data);	
+	// getGaVRevenue(data,2014);
+	// console.log(gaVRevenue);
+
+	d3.select('statArea').append('div')
+		.attr('id', 'statsAreaLegend');
+	updateScatterplot(data);
+
+	$('#xdropdownStat').change(function() {
+		updateScatterplot(data);
+	});
+	$('#ydropdownStat').change(function() {
+		updateScatterplot(data);
+	});
+});
+
 
 /**
  * Graphs a timeline (position vs. time) given an array of team names.
@@ -512,40 +570,43 @@ function updateClickedStat(){
 		YLabelStat= "Position";
 	}
 	
-	d3.json("SoccerData.json", function(error, data) {
-		getSoccerData(year,data);
-		drawStat(data);	
-		getGaVRevenue(data,2014);
-		// console.log(gaVRevenue);
+	// d3.json("SoccerData.json", function(error, data) {
+	// 	getSoccerData(year,data);
+	// 	drawStat(data);	
+	// 	getGaVRevenue(data,2014);
+	// 	// console.log(gaVRevenue);
 
-		MG.data_graphic({
-	        title: "Simple Scatterplot",
-	        data: gaVRevenue,
-	        chart_type: 'point',
-	        width: 600,
-	        height: 500,
-	        left: 100,
-	        right: 10,
-	        bottom: 70,
-	        target: '#statsAreaSVG',
-	        xax_format: function(f) {
-	            var pf = d3.formatPrefix(f);
-	            return Math.round(pf.scale(f)) + pf.symbol;
-	        },
-	        x_accessor: 'ga',
-	        y_accessor: 'revenue',
-	        color_accessor: 'country',
-	        color_type:'category',
-	        point_size: 4.5,
-	        x_label: 'Goals Against',
-	        y_label: 'Revenue',
-	        mouseover: function(d, i) { console.log(d,i); },
-	        y_rug: true
-	    });
-});
-		
+	// 	d3.select('statArea').append('div')
+	// 		.attr('id', 'statsAreaLegend');
 
-	
+		// MG.data_graphic({
+	 //        title: "Simple Scatterplot",
+	 //        data: gaVRevenue,
+	 //        chart_type: 'point',
+	 //        width: 600,
+	 //        height: 500,
+	 //        left: 100,
+	 //        right: 10,
+	 //        bottom: 70,
+	 //        target: '#statsAreaSVG',
+	 //        xax_format: function(f) {
+	 //            var pf = d3.formatPrefix(f);
+	 //            return Math.round(pf.scale(f)) + pf.symbol;
+	 //        },
+	 //        x_accessor: 'ga',
+	 //        y_accessor: 'revenue',
+	 //        color_accessor: 'country',
+	 //        color_type:'category',
+	 //        point_size: 4.5,
+	 //        x_label: 'Goals Against',
+	 //        y_label: 'Revenue',
+	 //        mouseover: function(d, i) { console.log(d,i); },
+	 //        y_rug: true,
+	 //        legend_target: '#statsAreaLegend',
+	 //        legend: ['England', 'France', 'Germany', 'Spain', 'Italy',
+	 //        		'Scotland', 'Turkey']
+	 //    });
+// });
 }
 
 function teamListChanged(team) {
