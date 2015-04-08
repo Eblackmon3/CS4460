@@ -90,6 +90,7 @@ pointer-events: none;
 	<option value="2014">2014</option>
 	<option value="2013">2013</option>
 	<option value="2012">2012</option>
+	<option value="2011">2011</option>
 	<option value="2010">2010</option>
 	<option value="2009">2009</option>
 	<option value="2008">2008</option>
@@ -149,14 +150,19 @@ var gaVRevenue = [];
 
 function getScatterplotData(data,x,y) {
 	var year = document.getElementById('yearDropDown').value;
+	console.log(year);
+	console.log(data);
 
 	var scatterData = [];
 	var j;
 	for (j = 0; j < data[''+year].length; j++) {
 		scatterData[j] = {};
-
+		//console.log(data[''+year]);
+		//console.log(data[''+year][j]);
 		scatterData[j][x] = parseInt(data[''+year][j].stats[x]);
-		scatterData[j][y] = data[''+year][j][y];
+		console.log(x+': '+scatterData[j][x]);
+		scatterData[j][y] = parseInt(data[''+year][j][y]);
+		console.log(y+': '+scatterData[j][y]);
 		scatterData[j]['country'] = data[''+year][j].country;
 		scatterData[j]['team'] = data[''+year][j].name;
 	}
@@ -168,10 +174,11 @@ function updateScatterplot(json) {
 	var x = document.getElementById('xdropdownStat').value;
 	var y = document.getElementById('ydropdownStat').value;
 
-	var data = getScatterplotData(json,x,y);
-	// console.log(data);
 	console.log(x);
 	console.log(y);
+	var data = getScatterplotData(json,x,y);
+	//console.log(data);
+	
 
 	MG.data_graphic({
         title: "European Teams",
