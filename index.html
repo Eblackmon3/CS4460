@@ -237,13 +237,21 @@ function updateScatterplot(json) {
         	var graph = document.getElementById('statArea').getBoundingClientRect();
         	// console.log(graph.top,graph.bottom,graph.left,graph.right);
         	var point = d.point;
+        	var year = document.getElementById('yearDropDown').value;
+        	if (parseInt(year) > 2012) {
+        		tooltip.style('right', (graph.right + 400)+'px')
+        		.style('top', (graph.top + 280)+'px')
+        	}
+        	else {
+        		console.log(graph.top,graph.bottom,graph.left,graph.right);
+        		tooltip.style('left', (graph.left + 600)+'px')
+        		.style('top', (graph.top + 280)+'px')	
+        	}
         	tooltip.transition()
         		.duration(200)
         		.style('opacity', .9)
         	tooltip.html('<b>Team:</b> '+point.team+'<br/>'+'<b>Country:</b> '+
         		point.country)
-        	.style('right', (graph.right + 400)+'px')
-        	.style('top', (graph.top + 280)+'px')
         	.style('line-height', '150%');
          },
          mouseout: function() {
