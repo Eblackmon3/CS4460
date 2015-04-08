@@ -161,7 +161,7 @@ function getScatterplotData(data,x,y) {
 		//console.log(data[''+year][j]);
 		scatterData[j][x] = parseInt(data[''+year][j].stats[x]);
 		console.log(x+': '+scatterData[j][x]);
-		scatterData[j][y] = parseInt(data[''+year][j][y]);
+		scatterData[j][y] = parseFloat(data[''+year][j][y]);
 		console.log(y+': '+scatterData[j][y]);
 		scatterData[j]['country'] = data[''+year][j].country;
 		scatterData[j]['team'] = data[''+year][j].name;
