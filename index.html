@@ -191,7 +191,7 @@ function updateScatterplot(json) {
         right: 20,
         bottom: 70,
         min_x: x !== 'gd' ? -1 : null,
-        max_x: 104,
+        max_x: 115,
         target: '#statsAreaSVG',
         xax_format: function(f) {
             var pf = d3.formatPrefix(f);
@@ -449,6 +449,7 @@ var statChart = d3.select("#statArea").append("svg")
 .attr("width", (width + margin.left + margin.right))
 .attr("height", height + margin.top + margin.bottom)
 .attr('id','statsAreaSVG')
+.attr('width','850')
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
