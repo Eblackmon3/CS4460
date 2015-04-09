@@ -112,7 +112,13 @@ pointer-events: none;
     </div>
 </div>
 
-
+<!-- Timeline Graph Area -->
+<div id="timelineContainer">
+	<div id="timeline" style="width:500px;">
+	</div>
+	<div id="timelineLegend" style="position:absolute;left:5%;">
+	</div>
+</div>
 
 <script>
 
@@ -181,8 +187,6 @@ function getScatterplotData(data,x,y) {
 		updateSocialGraph(data);
 	}
 	if (parseInt(year) < 2013) {
-		// console.log('year less than 2013');
-		// console.log($('socialAreaSVG'));
 		$('#socialAreaSVG').remove();
 	}
 
@@ -265,7 +269,6 @@ function updateScatterplot(json) {
 }
 
 function getSocialData(data,x,y) {
-	
 	var year = document.getElementById('yearDropDown').value;
 
 	var socialData = [];
@@ -283,8 +286,6 @@ function getSocialData(data,x,y) {
 		socialData[i]['country'] = data[''+year][i].country;
 		socialData[i]['team'] = data[''+year][i].name;
 	}
-
-	// console.log(socialData);
 	return socialData;
 }
 
@@ -293,7 +294,6 @@ function updateSocialGraph(json) {
 	// Y is same for scatterplot and social graph
 	var y = document.getElementById('ydropdownStat').value;
 
-
 	var data = getSocialData(json,x,y);
 
 	var colorRange = 
@@ -301,7 +301,6 @@ function updateSocialGraph(json) {
 		colorDomain =
 		['Spain','England','Germany','France','Italy',
 		'Turkey','Scotland'];
-
 
 	MG.data_graphic({
         title: "Social Media Graph",
@@ -335,6 +334,51 @@ function updateSocialGraph(json) {
 }
 
 
+function createTeamTableList(data, year) {
+	// d3.select('body').append('div')
+	// 	.attr('id', 'teamList')
+	// 	.attr('style', 'position:absolute;right:5%')
+	// 	.append('table')
+	// 		.attr('id', 'teamListTable');
+	var tableDiv = document.createElement('div');
+
+	var table = document.createElement('table');
+	table.id = 'teamListTable';
+	tableDiv.appendChild(table);
+	tableDiv.id = 'teamList';
+	tableDiv.style.position = 'absolute';
+	tableDiv.style.right = '5%';
+
+	document.body.appendChild(tableDiv);
+	var element = document.getElementById('teamListTable');
+
+	var i;
+	for (i = 0; i < data[''+2014].length; i++) {
+		// div.append('input')
+		// 	.attr('type', 'checkbox')
+		// 	.attr('value', data[''+2014][i].name)
+		// 	.attr('checked', true)
+		// 	.html(data[''+2014][i].name);	
+		
+		if (i == 0 || i == 5 || i == 10 || i == 15) {
+			console.log('Add table row');
+			table.innerHTML += '<tr>';
+		}
+		console.log(i);
+		table.innerHTML += '<td>'+
+				'<input type="checkbox"'+
+					'value="'+data[''+2014][i].name+'"'+
+					'id="table_team_'+data[''+2014][i].name+'"'+
+					'checked="true">'+data[''+2014][i].name+'</input>'+
+				'</td>'
+		if (i==4 || i==9 || i==14 || i==19) {
+			console.log('Close table row');
+			table.innerHTML += '</tr>';
+		}
+	}
+
+	console.log(table);
+}
 
 
 //Convert the umerical dat within our json 
@@ -389,17 +433,6 @@ var timelineData = {};
 
 d3.json("TeamPositions2.json", function(data){
 	timelineData = data;
-	
-	// Timeline Container to hold timeline and legend.
-	d3.select("body").append("div").attr('id','timelineContainter')
-		// Timeline graph
-		.append('div').attr("id", "timeline")
-		.attr("style", "width:500px;");
-
-	// Timeline legend
-	d3.select('#timelineContainter').append('div')
-		.attr('id', 'timelineLegend')
-		.attr('style','position:absolute;left:5%;');
 	
 	// Timeline Example Button 1 
 	d3.select('body').append('div').attr('id','timelineButtons')
@@ -479,6 +512,8 @@ d3.json("SoccerData.json", function(error, data) {
 	// console.log(gaVRevenue);
 	updateRevenue(data);
 	updateScatterplot(data);
+
+	createTeamTableList(data);
 
 	d3.select('#statArea').append('div')
 		.attr('id', 'statsAreaLegend');
