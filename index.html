@@ -48,7 +48,7 @@ pointer-events: none;
 	<option value="points">Points</option>
 </select>
 </div>
-<div style="display: table-cell; width: 150;position:absolute;left:8%;">
+<div style="display: table-cell; width: 150;position:absolute;left:11%;">
 <label for="ydropdownStat">Y: </label><select id="ydropdownStat">
 <option value="revenue">Revenue</option>
 <option value="position">Position</option>
@@ -260,6 +260,12 @@ function updateScatterplot(json) {
         	tooltip.html('<b>Team:</b> '+point.team+'<br/>'+'<b>Country:</b> '+
         		point.country)
         	.style('line-height', '150%');
+
+        	var team = [point.team];
+        	var color = colorRange[colorDomain.indexOf(point.country)];
+        	// var color = [colorRange[colorDomain.indexOf(point.name)]];
+        	console.log([color]);
+        	updateTimeline(team, [color]);
          },
          mouseout: function() {
          	tooltip.transition()
@@ -437,47 +443,47 @@ var timelineData = {};
 d3.json("TeamPositions2.json", function(data){
 	timelineData = data;
 	
-	// Timeline Example Button 1 
-	d3.select('body').append('div').attr('id','timelineButtons')
-		.append('input')
-		.attr('type', 'button')
-		.attr('name', 'chelseaButton')
-		.attr('value', 'Chelsea')
-		.on('click', function() {
+	// // Timeline Example Button 1 
+	// d3.select('body').append('div').attr('id','timelineButtons')
+	// 	.append('input')
+	// 	.attr('type', 'button')
+	// 	.attr('name', 'chelseaButton')
+	// 	.attr('value', 'Chelsea')
+	// 	.on('click', function() {
 			
-			updateTimeline(['Chelsea']);
-		});
-	// Timeline Example Button 2
-	d3.select('#timelineButtons')
-		.append('input')
-		.attr('type', 'button')
-		.attr('name', 'madridButton')
-		.attr('value', 'Real Madrid')
-		.on('click', function() {
-			updateTimeline(['Chelsea',
-							'Real Madrid'
-							]);
-		});
-	// Timeline Example Button 3
-	d3.select('#timelineButtons').append('input')
-		.attr('type', 'button')
-		.attr('name', 'romaButton')
-		.attr('value', 'AS Roma')
-		.on('click', function() {
-			updateTimeline(['Chelsea',
-							'Real Madrid',
-							'AS Roma',
-							'Manchester United',
-							'Liverpool'
-							]);
-		});
-	d3.select('#timelineButtons').
-		attr('style','margin-top:8px;position:absolute;bottom:6%;left:5%');
+	// 		updateTimeline(['Chelsea']);
+	// 	});
+	// // Timeline Example Button 2
+	// d3.select('#timelineButtons')
+	// 	.append('input')
+	// 	.attr('type', 'button')
+	// 	.attr('name', 'madridButton')
+	// 	.attr('value', 'Real Madrid')
+	// 	.on('click', function() {
+	// 		updateTimeline(['Chelsea',
+	// 						'Real Madrid'
+	// 						]);
+	// 	});
+	// // Timeline Example Button 3
+	// d3.select('#timelineButtons').append('input')
+	// 	.attr('type', 'button')
+	// 	.attr('name', 'romaButton')
+	// 	.attr('value', 'AS Roma')
+	// 	.on('click', function() {
+	// 		updateTimeline(['Chelsea',
+	// 						'Real Madrid',
+	// 						'AS Roma',
+	// 						'Manchester United',
+	// 						'Liverpool'
+	// 						]);
+	// 	});
+	// d3.select('#timelineButtons').
+	// 	attr('style','margin-top:8px;position:absolute;bottom:6%;left:5%');
 	
 	MG.data_graphic({
 	    title: 'League Positions Over Time',
 	    // description: 'This is where a teams position over time will appear.',
-	    data: data["Chelsea"], 
+	    data: [], 
 	    markers: markers,
 	    width: 1000,
 	    height: 250,
@@ -488,6 +494,7 @@ d3.json("TeamPositions2.json", function(data){
 	    x_label: 'Season',
 	    y_label: 'Position',
 	    interpolate: 'basic',
+	    // custom_line_color_map: ['Red'],
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
 	    y_accessor: 'position', // the key that accesses the y value
@@ -540,7 +547,7 @@ d3.json("SoccerData.json", function(error, data) {
  * Graphs a timeline (position vs. time) given an array of team names.
  * @param {Array} team An array containing team names.
  */
-function updateTimeline(teams) {
+function updateTimeline(teams, color) {
 	// console.log(teams);
 	var data = [];
 	for (var i = 0; i < teams.length; i++) {
@@ -560,6 +567,7 @@ function updateTimeline(teams) {
 	    x_label: 'Season',
 	    y_label: 'Position',
 	    interpolate: 'basic',
+	    // custom_line_color_map: color,
 	    target: '#timeline', // the html element that the graphic is inserted in
 	    x_accessor: 'year',  // the key that accesses the x value
 	    y_accessor: 'position', // the key that accesses the y value
