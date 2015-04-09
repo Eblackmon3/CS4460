@@ -222,6 +222,8 @@ function updateScatterplot(json) {
         		tooltip.style('right', '50%')	
         		.style('top', '30%');	
         	}
+        	var position = getPositionFromYear(point,year);
+
         	tooltip.transition()
         		.duration(200)
         		.style('opacity', .9)
@@ -231,19 +233,40 @@ function updateScatterplot(json) {
 
         	var team = [point.team];
         	var color = colorRange[colorDomain.indexOf(point.country)];
-        	// var color = [colorRange[colorDomain.indexOf(point.name)]];
-        	console.log([color]);
+
         	updateTimeline(team, [color]);
-        	// $('#timelineDropdownContainer').css('visibility','visible');
+
+        	tooltipTimeline.style('right','50%')
+        		.style('top','50%');
+
+        	tooltipTimeline.transition()
+        		.duration(200)
+        		.style('opacity','.9');
+        	tooltipTimeline.html('<b>Position: </b>'+
+        		position);
          },
          mouseout: function() {
          	tooltip.transition()
          		.duration(500)
          		.style('opacity', 0);
+         	tooltipTimeline.transition()
+         		.duration(500)
+         		.style('opacity',0);
          },
         y_rug: true,
 
     });
+}
+
+function getPositionFromYear(point, year) {
+	var i,
+		data = timelineData[''+point.team];
+	for (var i = 0; i < data.length; i++) {
+		if (data[i].year == year) {
+			return data[i].position;
+		}
+	}
+	return;
 }
 
 function getSocialData(data,x,y) {
@@ -431,8 +454,12 @@ var statChart = d3.select("#statArea").append("svg")
 
 //add the tool tip which we will use for the hoover effect for both charts 
 var tooltip = d3.select("body").append("div")
-.attr("class", "tooltip")
-.style("opacity", 0);
+	.attr("class", "tooltip")
+	.style("opacity", 0);
+
+var tooltipTimeline = d3.select("body").append("div")
+	.attr("class", "tooltip")
+	.style("opacity", 0);
 
 
 </script>
