@@ -4,82 +4,20 @@
 
 <head>
 <meta charset="utf-8">
-<title>Soccer Viz</title>
+<title>Soccer Visualization</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="d3/d3.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript" src="dist/metricsgraphics.js"></script>
 <link rel="stylesheet" type="text/css" href="dist/metricsgraphics.css">
-<style>
-body {
-font: 11px sans-serif;
-}
-
-.axis path,
-.axis line {
-fill: none;
-stroke: #000;
-	shape-rendering: crispEdges;
-}
-
-.dot {
-stroke: #fff;
-}
-
-
-.tooltip {
-position: absolute;
-width: 200px;
-height: 28px;
-pointer-events: none;
-}
-
-</style>
-<!--Set up area for both of the graphs -->
-
+<link rel="stylesheet" type="text/css" href="styling.css">
+</head>
 
 <body>
-<!-- Selection for the Statistics Graph-->
-<div style="position:relative;left:5%;">
-	<div style="width: 120;float:left;margin-right:1%;">
-		<div>
-			<label for="xdropdownStat">X: </label>
-			<select id="xdropdownStat">
-				<option value="ga">Goals Against</option>
-				<option value="gf">Goals For</option>
-				<option value="gd">Goal Differential</option>
-				<option value="points">Points</option>
-			</select>
-		</div>
-	</div>
-	<div style="width: 150;float:left;">
-		<div>
-			<label for="ydropdownStat">Y: </label>
-			<select id="ydropdownStat">
-				<option value="revenue">Revenue</option>
-				<option value="position">Position</option>
-			</select>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-<!--Selection for the Social media Graph -->
-<div style="position:relative;left:39%;">
-	<div style="width: 120;">
-		<label for="xdropdownSocial">X: </label>
-		<select id="xdropdownSocial">
-			<option value="twitter">Twitter Followers</option>
-			<option value="facebook">Facebook Followers</option>
-		</select>
-	</div>
-</div>
+<h1> World's Best Soccer Teams </h1>
 <!-- Year Selector-->
-
-<div style="position:absolute;left:41%;top:1.5%;">
-	<div style="width: 120;">
+<div>
+	<div id="year">
 		<label for="yearDropDown">Year: </label>
 		<select id="yearDropDown" onchange="">
 			<option value="2014">2014</option>
@@ -95,10 +33,38 @@ pointer-events: none;
 		</select>
 	</div>
 </div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- Selection for the Statistics Graph-->
+<div id="t1">
+	<table>
+		<tr><th><label for="xdropdownStat"></label></th>
+			<select id="xdropdownStat">
+				<option value="ga">Goals Against</option>
+				<option value="gf">Goals For</option>
+				<option value="gd">Goal Differential</option>
+				<option value="points">Points</option>
+			</select>
+
+			<th><label for="ydropdownStat"></label> </th>
+			<select id="ydropdownStat">
+				<option value="revenue">Revenue</option>
+				<option value="position">Position</option>
+			</select>
+
+			<!--Selection for the Social media Graph -->
+
+			<th><label for="xdropdownSocial"></label></th>
+			<select id="xdropdownSocial">
+				<option value="twitter">Twitter Followers</option>
+				<option value="facebook">Facebook Followers</option>
+			</select>
+		</tr>
+	</table>
+
+</div>
 
 <!-- Setup Chart areas-->
-<div style="width: 100%; display: table;">
+<div id="c1" style="display: table;">
     <div style="display: table-row">
         <div id= "statArea" style=" display: table-cell;">  </div>
         <div id= "socialArea" style="display: table-cell;"> </div>
@@ -107,7 +73,7 @@ pointer-events: none;
 
 <!-- Timeline Graph Area -->
 <div id="timelineContainer" style="position:relative;">
-	<div id="timeline" style="width:500px;">
+	<div id="timeline">
 	</div>
 	<div id="timelineDropdownContainer" style="position:absolute;left:29%;top:5%;visibility:hidden;">
 		<label>Y-Axis:</label>
@@ -122,13 +88,14 @@ pointer-events: none;
 	</div>
 	<div id="timelineLegend" style="position:absolute;left:5%;">
 	</div>
+	<h2> League Positions Over Time </h2>
 </div>
 
 <script>
 
 //set the margins for the canvas 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-width = 750 - margin.left - margin.right,
+width = 600 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
 function getScatterplotData(data,x,y) {
@@ -185,8 +152,8 @@ function updateScatterplot(json) {
         title: "European Teams",
         data: data,
         chart_type: 'point',
-        width: 600,
-        height: 500,
+        width: 500,
+        height: 350,
         left: 150,
         right: 20,
         bottom: 70,
@@ -214,13 +181,13 @@ function updateScatterplot(json) {
         	var point = d.point;
         	var year = document.getElementById('yearDropDown').value;
         	if (parseInt(year) > 2012) {
-        		tooltip.style('right', '50%')
-        		.style('top', '30%');
+        	/*	tooltip.style('right', '50%')
+        		.style('top', '30%');*/
         	}
         	else {
-        		console.log(graph.top,graph.bottom,graph.left,graph.right);
+        		/*console.log(graph.top,graph.bottom,graph.left,graph.right);
         		tooltip.style('right', '50%')	
-        		.style('top', '30%');	
+        		.style('top', '30%');*/	
         	}
         	var position = getPositionFromYear(point,year);
 
@@ -228,7 +195,7 @@ function updateScatterplot(json) {
         		.duration(200)
         		.style('opacity', .9)
         	tooltip.html('<b>Team:</b> '+point.team+'<br/>'+'<b>Country:</b> '+
-        		point.country)
+        		point.country + "<br/><b>Position: </b>" + position)
         	.style('line-height', '150%');
 
         	var team = [point.team];
@@ -236,14 +203,14 @@ function updateScatterplot(json) {
 
         	updateTimeline(team, [color]);
 
-        	tooltipTimeline.style('right','50%')
-        		.style('top','50%');
+        	/*tooltipTimeline.style('right','50%')
+        		.style('top','50%');*/
 
-        	tooltipTimeline.transition()
+        	/*tooltipTimeline.transition()
         		.duration(200)
         		.style('opacity','.9');
         	tooltipTimeline.html('<b>Position: </b>'+
-        		position);
+        		position);*/
          },
          mouseout: function() {
          	tooltip.transition()
@@ -307,8 +274,8 @@ function updateSocialGraph(json) {
         title: "Social Media Graph",
         data: data,
         chart_type: 'point',
-        width: 700,
-        height: 500,
+        width: 500,
+        height: 350,
         left: 150,
         right: 10,
         bottom: 70,
@@ -325,9 +292,9 @@ function updateSocialGraph(json) {
         color_type:'category',
         color_range: colorRange,
         point_size: 7,
-        x_label: x += ' Followers',
-        y_label: y,
-        yax_units: y == 'revenue' ? '€' : '',
+        x_label: x += ' Followers (in millons)',
+        y_label: "Revenue",
+        yax_units: y == 'Revenue' ? '€' : '',
         linked: true,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
@@ -421,11 +388,11 @@ function updateTimeline(teams, color) {
 	var parentWidth = $('body').width();
 	
 	MG.data_graphic({
-	    title: 'League Positions Over Time',
+	    //title: 'League Positions Over Time',
 	    // description: 'This is where a teams position over time will appear.',
 	    data: data, 
 	    markers: markers,
-	    width: parentWidth,
+	    width: 1000,
 	    height: 250,
 	    left: 100,
 	    right: 40,
@@ -442,14 +409,16 @@ function updateTimeline(teams, color) {
 	    legend_target: '#timelineLegend',
 
 	});
+
 }
+
 
 //connect the svg elements to both the stat chart and the social revenue chart 
 var statChart = d3.select("#statArea").append("svg")
 .attr("width", (width + margin.left + margin.right))
 .attr("height", height + margin.top + margin.bottom)
 .attr('id','statsAreaSVG')
-.attr('width','850')
+.attr('width','600')
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

@@ -3,6 +3,10 @@
     font-size: 0.9rem;
     font-weight: 400;
     opacity: 0.8;
+    position: relative;
+    top:90px;
+    left: 500px;
+    x: "400";
 }
 
 .mg-area1-color {
