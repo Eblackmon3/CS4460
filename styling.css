@@ -16,30 +16,86 @@ stroke: #fff;
 }
 
 h1 {
-	color:  #b0c4de;
+	color:  #2E4161;
 	position: absolute;
-	left: 520px;
+	text-align: center;
+	left: 420px;
 	top:5px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+	font-size: 30px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.3999996185303px;
+}
+h2{
+	font-family: Calibri;
+	color:  #2E4161;
+}
+
+p{
+	font-family: sans-serif;
+	color: #2E4161;
+}
+
+b {
+	font-family: sans-serif;
+	color: #2E4161;
+}
+
+#socialAreaSVG {
+	width: 550px;
+	height: 350px;
+}
+
+#timelineContainer {
+	width: 100%;
+	postion: relative;
+	top:500px;
+	padding-left: 50px;
+	margin: 50px;
+
+}
+
+#timeline {
+	width: 80%;
+	left: 20%;
+}
+
+#statArea{
+	width: 550px;
+}
+
+#socialArea {
+	width: 550px;
+}
+
+
+
+#statsAreaSVG {
+	width: 550px;
+	height: 350px;
 }
 
 #t1 {
 	position: relative;
 	left: 500px;
-	top:80px;
+	top:60px;
 }
 #c1 {
 	/*background-color: #b0c4de;*/
-	width: 100%;
+	width: 800px;
 	position: relative;
-	top: 85px;
-	height: 400px;
+	top: 70px;
+	height: 360px;
+	margin-left: 50px;
 }
 
 #year{
 	width: 120;
 	position: relative;
 	left: 600px;
-	top: 60px;
+	top: 50px;
 }
 
 
@@ -47,7 +103,7 @@ h1 {
 	position: absolute;
 	width: 200px;
 	height: 28px;
-	left: 50px;
+	left: 200px;
 	top:50px;
 	pointer-events: none;
 }

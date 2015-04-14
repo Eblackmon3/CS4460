@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<h1> World's Best Soccer Teams </h1>
+<h1> Best European Soccer Teams </h1>
 <!-- Year Selector-->
 <div>
 	<div id="year">
@@ -62,7 +62,8 @@
 	</table>
 
 </div>
-
+<h2 style="position:absolute; left:260px; top: 115px;"> Game Statistics</h2>
+<h2 style="position:absolute; left:760px; top: 115px;"> Social Media Statistics </h2>
 <!-- Setup Chart areas-->
 <div id="c1" style="display: table;">
     <div style="display: table-row">
@@ -71,10 +72,17 @@
     </div>
 </div>
 
+ <div id="timelineContainer">
+ <h2> League Positions Over Time </h2>
+    	<div id="timeline" /> 
+    </div>
+
 <!-- Timeline Graph Area -->
-<div id="timelineContainer" style="position:relative;">
-	<div id="timeline">
-	</div>
+<!-- <div id="timelineContainer"> -->
+<!-- 	<div id="timeline">
+	</div> -->
+
+	<!-- This is the code for the dropdown timeline selector -->
 	<div id="timelineDropdownContainer" style="position:absolute;left:29%;top:5%;visibility:hidden;">
 		<label>Y-Axis:</label>
 		<select id="timelineDropdownList">
@@ -86,10 +94,10 @@
 			<option value="position">Position</option>
 		</select>
 	</div>
-	<div id="timelineLegend" style="position:absolute;left:5%;">
+	<div id="timelineLegend" style="position:absolute;right:20%">
 	</div>
-	<h2> League Positions Over Time </h2>
-</div>
+	
+
 
 <script>
 
@@ -152,7 +160,7 @@ function updateScatterplot(json) {
         title: "European Teams",
         data: data,
         chart_type: 'point',
-        width: 500,
+        width: 550,
         height: 350,
         left: 150,
         right: 20,
@@ -166,7 +174,7 @@ function updateScatterplot(json) {
         },
         x_accessor: x,
         y_accessor: y,
-        yax_units: y == 'revenue' ? '€' : '',
+        yax_units: y == 'revenue' ? '€ ' : '',
         color_accessor: 'country',
         color_domain: colorDomain,
         color_type:'category',
@@ -195,7 +203,8 @@ function updateScatterplot(json) {
         		.duration(200)
         		.style('opacity', .9)
         	tooltip.html('<b>Team:</b> '+point.team+'<br/>'+'<b>Country:</b> '+
-        		point.country + "<br/><b>Position: </b>" + position)
+        		point.country + "<br/><b>Position: </b>" + position + '<br/><b>Revenue: </b>' + point.revenue
+        		+ '<br/><b></b>')
         	.style('line-height', '150%');
 
         	var team = [point.team];
@@ -274,7 +283,7 @@ function updateSocialGraph(json) {
         title: "Social Media Graph",
         data: data,
         chart_type: 'point',
-        width: 500,
+        width: 550,
         height: 350,
         left: 150,
         right: 10,
@@ -293,8 +302,8 @@ function updateSocialGraph(json) {
         color_range: colorRange,
         point_size: 7,
         x_label: x += ' Followers (in millons)',
-        y_label: "Revenue",
-        yax_units: y == 'Revenue' ? '€' : '',
+        y_label: y,
+        yax_units: y == 'revenue' ? '€ ' : '',
         linked: true,
         mouseover: function(d, i) { console.log(d,i); },
         y_rug: true,
@@ -418,7 +427,6 @@ var statChart = d3.select("#statArea").append("svg")
 .attr("width", (width + margin.left + margin.right))
 .attr("height", height + margin.top + margin.bottom)
 .attr('id','statsAreaSVG')
-.attr('width','600')
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
