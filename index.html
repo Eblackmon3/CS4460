@@ -62,8 +62,10 @@
 	</table>
 
 </div>
+<!-- The top graph titles -->
 <h2 style="position:absolute; left:260px; top: 115px;"> Game Statistics</h2>
 <h2 style="position:absolute; left:760px; top: 115px;"> Social Media Statistics </h2>
+
 <!-- Setup Chart areas-->
 <div id="c1" style="display: table;">
     <div style="display: table-row">
@@ -72,17 +74,13 @@
     </div>
 </div>
 
+<!-- Timeline Graph Area -->
  <div id="timelineContainer">
  <h2> League Positions Over Time </h2>
     	<div id="timeline" /> 
     </div>
 
-<!-- Timeline Graph Area -->
-<!-- <div id="timelineContainer"> -->
-<!-- 	<div id="timeline">
-	</div> -->
-
-	<!-- This is the code for the dropdown timeline selector -->
+<!-- This is the code for the dropdown timeline selector -->
 	<div id="timelineDropdownContainer" style="position:absolute;left:29%;top:5%;visibility:hidden;">
 		<label>Y-Axis:</label>
 		<select id="timelineDropdownList">
@@ -96,19 +94,19 @@
 	</div>
 	<div id="timelineLegend" style="position:absolute;right:20%">
 	</div>
-	
-
 
 <script>
 
-//set the margins for the canvas 
+//Set the margins for the canvas 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
 width = 600 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
 
+/*
+* Retrieve Data for scatterplot 
+*/
 function getScatterplotData(data,x,y) {
 	var year = document.getElementById('yearDropDown').value;
-
 	var scatterData = [];
 	var j;
 	for (j = 0; j < data[''+year].length; j++) {
@@ -154,8 +152,8 @@ function updateScatterplot(json) {
 		colorDomain =
 		['Spain','England','Germany','France','Italy',
 		'Turkey','Scotland'];
-
-		
+	
+	//for imported mg class	
 	MG.data_graphic({
         title: "European Teams",
         data: data,
@@ -199,6 +197,7 @@ function updateScatterplot(json) {
         	}
         	var position = getPositionFromYear(point,year);
 
+        	// tooltip for the Statistics Area
         	tooltip.transition()
         		.duration(200)
         		.style('opacity', .9)
@@ -279,6 +278,7 @@ function updateSocialGraph(json) {
 		['Spain','England','Germany','France','Italy',
 		'Turkey','Scotland'];
 
+	// Connects to Metrics Graphs for formatting of Social Media Graph
 	MG.data_graphic({
         title: "Social Media Graph",
         data: data,
@@ -310,7 +310,6 @@ function updateSocialGraph(json) {
 
     });
 }
-
 
 /**
  * Helper function for timeline graph.
@@ -357,6 +356,7 @@ function updateRevenue(data) {
 	}
 }
 
+// Update data in scatterplots
 d3.json("SoccerData.json", function(error, data) {
 	fullData = data;
 	updateRevenue(data);
